@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "RGB Clock";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<style>
+    table {
+        border: 2px solid black;
+    }
+
+    td {
+        border: 1px solid black;
+        width: 64px;
+        text-align: center;
+        color: white;
+    }
+
+        td.void {
+            border: 0px;
+        }
+
+        td.red {
+            background-color: red;
+        }
+
+        td.green {
+            background-color: green;
+        }
+
+        td.blue {
+            background-color: blue;
+        }
+</style>
+
+<header class="post-header">
+    <h1 class="post-title">RGB Clock</h1>
+</header>
+
+<article class="post-content">
+    <section>
+        <h1>Introduction</h1>
+        <p>
+            This is a Javascript prototype of an <a href="https://github.com/mlibby/arduino/tree/master/RgbClock">RGB Clock</a> project I am working on with Arduino, RGB LEDs, and a couple of shift registers.
+        </p>
+        <p>
+            "Normal" clocks display time in base 10 (that is, digits 1234567890). Nerds often make clocks in binary (base 2 -- just 0s and 1s, or lights that are on or off). This clock uses Red, Green, and Blue instead of numerals (denoting values of zero, one and two, respectively)
+        </p>
+        <p>
+            This clock includes the place numbers for the base 3 numbers to help decode/understand the numbers of the clock. It also includes a "normal" 24 hour clock to aid in double-checking the LED display. The real clock will simply be 11 LED bulbs.
+        </p>
+    </section>
+
+    <section>
+        <h1>Simulated LEDs</h1>
+        <table>
+            <tr>
+                <th>Hours</th>
+                <td class='r1c1 red'>9s</td>
+                <td class='r1c2 red'>3s</td>
+                <td class='r1c3 red'>1s</td>
+                <td class='r1c4 void'></td>
+            </tr>
+            <tr>
+                <th>Minutes</th>
+                <td class='r2c1 red'>27s</td>
+                <td class='r2c2 red'>9s</td>
+                <td class='r2c3 red'>3s</td>
+                <td class='r2c4 red'>1s</td>
+            </tr>
+            <tr>
+                <th>Seconds</th>
+                <td class='r3c1 red'>27s</td>
+                <td class='r3c2 red'>9s</td>
+                <td class='r3c3 red'>3s</td>
+                <td class='r3c4 red'>1s</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h1>24 Hour Clock</h1>
+<pre id='current-time'>23:59:59</pre>
+    </section>
+
+    <script src="/js/rgb_clock.js"></script>
+</article>

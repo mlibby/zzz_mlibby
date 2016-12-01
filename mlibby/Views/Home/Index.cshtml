@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<header class="post-header">
+    <h1 class="post-title">Welcome</h1>
+</header>
+
+<article class="post-content">
+    <p>If you are reading this it is because you are interested in me or my code.</p>
+    <ul>
+        <li>@Html.ActionLink("About Me", "About")</li>
+        <li>@Html.ActionLink("My Code", "Index", "Code")</li>
+    </ul>
+</article>
