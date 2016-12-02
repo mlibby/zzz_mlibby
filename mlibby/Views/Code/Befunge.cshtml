@@ -2,39 +2,73 @@
     ViewBag.Title = "Befunge";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
-<style>
-    table {
-        border: 2px solid black;
-    }
-
-    td {
-        border: 1px solid black;
-        width: 64px;
-        text-align: center;
-        color: white;
-    }
-
-        td.void {
-            border: 0px;
-        }
-
-        td.red {
-            background-color: red;
-        }
-
-        td.green {
-            background-color: green;
-        }
-
-        td.blue {
-            background-color: blue;
-        }
-</style>
-
 <header class="post-header">
     <h1 class="post-title">Befunge</h1>
 </header>
 
 <article class="post-content">
+    <div id="befunge-ide" class="befunge-ide">
+        <div class="befunge-meta">
+            <h3>Controls</h3>
+            <div>
+                <button id="reload-torus" class="befunge-control" title="Reload Torus">@@</button>
+                <button id="run" class="befunge-control" title="Run">&gt;</button>
+                <button id="pause" class="befunge-control" title="Pause">||</button>
+                <!--
+                    <button id="edit" class="befunge-control"
+                    title="Edit">#</button>
+                -->
+                <button id="text-view" class="befunge-control" title="View/Edit as Text">T</button>
+            </div>
+        </div>
+        <div class="befunge-meta">
+            <h3>Step Speed</h3>
+            <div id="speed-slider" style="margin:10px;width:64px;"></div>
+        </div>
+        <div class="befunge-meta">
+            <h3>Save Changes?</h3>
+            <p><%= f.submit "Save" %></p>
+        </div>
+        <div style="clear:both"></div>
+        <div class="befunge-meta">
+            <h3>Output Console</h3>
+            <textarea id="console" rows="3" cols="40"
+                      readonly="readonly"></textarea>
+            <button id="clear-console" title="Clear Console" style="float:right;margin:1px 8px;">Clear</button>
+        </div>
+        <div class="befunge-meta">
+            <h3>Stack</h3>
+            <textarea id="stack" rows="3" cols="30"
+                      readonly="readonly"></textarea>
+            <select id="stack-mode" style="float:right;margin:1px 8px;">
+                <option selected="selected">hex</option>
+                <option>dec</option>
+                <option>asc</option>
+            </select>
+        </div>
 
+        <%= f.text_area(:code, cols: 80, rows: 25, id: "befunge-text", style: "display:none;") %>
+
+        <div style="clear:both"></div>
+        <% end %>
+
+        <div class="befunge-torus-container">
+            <div class="befunge-torus">
+                <% 0.upto(@befunge.height - 1) do |y| %>
+                <div class="befunge-torus-row">
+                    <% 0.upto(@befunge.width - 1) do |x| %>
+                    <div id='<%= "#{x}-#{y}" %>' class='befunge-torus-cell'>
+                        <span>@{// befunge.cell(x, y)}
+                        }</span>
+                        <input type='text' maxlength='1' value='@{//befunge.cell(x,y) }%>
+
+                        }' />
+                    </div>
+                    <% end %>
+                </div>
+                <% end %>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
 </article>
