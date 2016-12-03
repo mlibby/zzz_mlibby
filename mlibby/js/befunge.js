@@ -95,8 +95,10 @@
     }
 
     $(document).ready(function () {
-        $("#befunge-file").click(readFile);
-        $("#open-file").click(openFile);
-        drawTorus();
+        if ($("h1").text() === "Befunge") {
+            $("#befunge-file").click(readFile);
+            $("#open-file").click(openFile);
+            drawTorus();
+        }
     });
 })();

@@ -14,8 +14,8 @@ namespace mlibby
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
-                "~/Scripts/lib/jquery-3.1.1.js",
-                "~/Scripts/lib/bootstrap.js"
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/bootstrap.js"
                 ));
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(

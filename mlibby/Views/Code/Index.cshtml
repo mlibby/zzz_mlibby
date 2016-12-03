@@ -3,16 +3,14 @@
     ViewBag.Title = "My Code";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
-<header class="post-header">
-    <h1 class="post-title">My Code</h1>
-</header>
-
-<article class="post-content">
-    <p>These are some samples of my code:</p>
-    <ul>
-        <li>@Html.ActionLink("RGB Clock", "RgbClock") - a clock that tells time using three colors</li>
-        <li>@Html.ActionLink("Befunge", "Befunge") - a development tool for an esoteric programming language</li>
-    </ul>
-</article>
+<div class="row">
+    <div class="col-md-12">
+        <h2>My Code in Action</h2>
+        <ul>
+            <li>@Html.ActionLink("RGB Clock", "RgbClock") - a clock that tells time using three colors</li>
+            <li>@Html.ActionLink("Befunge", "Befunge") - a development tool for an esoteric programming language</li>
+        </ul>
+    </div>
+</div>
 
 
