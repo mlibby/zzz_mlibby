@@ -2,44 +2,19 @@
     ViewBag.Title = "Befunge";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
-<style>
-    table.torus {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid #a0a0a0;
-        background-color: #a0a0a0;
-        margin: 0;
-        padding: 0;
-    }
-
-        table.torus td {
-            border: 0 solid #a0a0a0;
-            padding: 0;
-            margin: 0;
-        }
-
-            table.torus td input {
-                width: 13px;
-                height: 19px;
-                text-align: center;
-                margin: 0;
-                padding: 0;
-                border: 1px solid #a0a0a0;
-            }
-</style>
 
 <h1>Befunge</h1>
 
 <div class="row">
     <section class="col-md-4 form-inline">
         <h2>Program</h2>
-        <button class="btn btn-default" title="Open File">
+        <button id="open-file" class="btn btn-default" title="Open File">
             <span class="glyphicon glyphicon-folder-open"></span>
             <span class="sr-only">Open File</span>
         </button>
-        <input type="text" class="form-control" />
-        <input type="file" class="hidden" />
-        <button class="btn btn-default" title="Save File">
+        <input id="file-name" type="text" class="form-control" />
+        <input id="befunge-file" type="file" class="hidden" />
+        <button id="save-file" class="btn btn-default" title="Save File">
             <span class="glyphicon glyphicon-floppy-disk"></span>
             <span class="sr-only">Save File</span>
         </button>
@@ -47,19 +22,19 @@
     </section>
     <section class="col-md-4">
         <h2>Controls</h2>
-            <button class="btn btn-primary" title="Reload Torus">
-                <span class="glyphicon glyphicon-refresh"></span>
-                <span class="sr-only">Reload Torus</span>
-            </button>
-            <button class="btn btn-primary" title="Run">
-                <span class="glyphicon glyphicon-play"></span>
-                <span class="sr-only">Run</span>
-            </button>
-            <button class="btn btn-primary" title="Pause">
-                <span class="glyphicon glyphicon-pause"></span>
-                <span class="sr-only">Pause</span>
-            </button>
-        
+        <button class="btn btn-primary" title="Reload Torus">
+            <span class="glyphicon glyphicon-refresh"></span>
+            <span class="sr-only">Reload Torus</span>
+        </button>
+        <button class="btn btn-primary" title="Run">
+            <span class="glyphicon glyphicon-play"></span>
+            <span class="sr-only">Run</span>
+        </button>
+        <button class="btn btn-primary" title="Pause">
+            <span class="glyphicon glyphicon-pause"></span>
+            <span class="sr-only">Pause</span>
+        </button>
+
     </section>
     <section class="col-md-4">
         <h2>Step Speed</h2>
@@ -71,33 +46,23 @@
     </section>
 </div>
 <div class="row">
-    <section>
-        <div class="col-md-12">
-            <h2>Output Console</h2>
+    <section class="col-md-6">
+        <div class="form-inline">
+            <h2 class="h-horizontal">Output</h2>
+            <button class="btn btn-danger by-header" title="Clear Console"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Clear Console</span></button>
         </div>
-        <div class="col-md-11">
-            <textarea class="form-control" readonly="readonly"></textarea>
-        </div>
-        <div class="col-md-1">
-            <button class="btn btn-danger" title="Clear Console"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Clear Console</span></button>
-        </div>
+        <textarea class="form-control" readonly="readonly"></textarea>
     </section>
-</div>
-<div class="row">
-    <section>
-        <div class="col-md-12">
-            <h2>Stack</h2>
-        </div>
-        <div class="col-md-10">
-            <textarea class="form-control" readonly="readonly"></textarea>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control">
+    <section class="col-md-6">
+        <div>
+            <h2 class="h-horizontal">Stack</h2>
+            <select class="form-control by-header">
                 <option selected="selected">hexadecimal</option>
                 <option>decimal</option>
                 <option>ascii</option>
             </select>
         </div>
+        <textarea class="form-control" readonly="readonly"></textarea>
     </section>
 </div>
 <div class="row">
@@ -108,18 +73,12 @@
 <div class="row">
     <section class="col-md-12">
         <h2>The Torus</h2>
-        <table class="torus">
-            @for (int y = 0; y < 25; y++)
-            {
-                <tr>
-                    @for (int x = 0; x < 80; x++)
-                {
-                        <td id='@x-@y' class='befunge-torus-cell'>
-                            <input type='text' maxlength='1' />
-                        </td>
-                    }
-                </tr>
-            }
-        </table>
+        <div id="torus-wrapper">
+            <div id="torus">
+
+            </div>
+        </div>
     </section>
 </div>
+
+<script src="~/js/befunge.js"></script>

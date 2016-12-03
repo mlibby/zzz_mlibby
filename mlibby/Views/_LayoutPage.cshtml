@@ -10,12 +10,10 @@
 
     <meta name="description" content="I am Michael C. Libby and this is my web site. I am a software developer, web developer, and accessibility enthusiast. My friends call me &ldquo;Libby.&rdquo;">
 
-    <link href="~/Content/normalize.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="~/css/main.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/libs")
+    @Scripts.Render("~/bundles/js")
+    
     <link rel="canonical" href="http://mlibby.com/">
 </head>
 
