@@ -1,3 +1,8 @@
-﻿nav.navbar {
-    margin-bottom: 2px;
+﻿.navbar h1 {
+display: inline-block;
+vertical-align: middle;
+float: left;
+padding: 0;
+margin: 5px 0;
+color: white;
 }

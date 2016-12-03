@@ -9,24 +9,20 @@
         y: 0,
         height: 8,
         width: 32,
-        filename: "",
         rawText: "",
         parsedText: "",
     };
 
-    function openFile() {
-        $("#befunge-file").click();
-    }
-
-    function readFile(fileName) {
-        befunge.filename = $("#befunge-file")[0].files[0];
-        if (befunge.filename) {
-            var fr = new FileReader();
-            fr.onload = function (e) {
+    function readFile() {
+        var file = $("#befunge-file")[0].files[0];
+        if (file) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
                 befunge.rawText = e.target.result;
                 parseText();
+                $("#file-name").val(file.name);
             }
-            fr.readAsText(befunge.filename);
+            fileReader.readAsText(file);
         } else {
             alert("Failed to load file");
         }
@@ -96,8 +92,7 @@
 
     $(document).ready(function () {
         if ($("h1").text() === "Befunge") {
-            $("#befunge-file").click(readFile);
-            $("#open-file").click(openFile);
+            $("#befunge-file").change(readFile);
             drawTorus();
         }
     });

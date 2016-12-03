@@ -3,19 +3,16 @@
     ViewBag.Title = "Welcome";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
+<article class="row">
+    <div class="col-sm-12">
+        <p>
+            I am Michael C. Libby and this is my site. I am a software developer, web developer, and accessibility enthusiast. My friends call me &ldquo;Libby.&rdquo;
+        </p>
 
-<header class="post-header">
-    <h1 class="post-title">Welcome</h1>
-</header>
-
-<article class="post-content">
-    <p>
-        I am Michael C. Libby and this is my site. I am a software developer, web developer, and accessibility enthusiast. My friends call me &ldquo;Libby.&rdquo;
-    </p>
-
-    <p>Odds are you've landed on this site out of interest in me or my code.</p>
-    <ul>
-        <li>@Html.ActionLink("About Me", "About")</li>
-        <li>@Html.ActionLink("My Code", "Index", "Code")</li>
-    </ul>
+        <p>Odds are you've landed on this site out of interest in me or my code.</p>
+        <ul>
+            <li>@Html.ActionLink("About Me", "About")</li>
+            <li>@Html.ActionLink("My Code", "Index", "Code")</li>
+        </ul>
+    </div>
 </article>

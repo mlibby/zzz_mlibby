@@ -3,21 +3,23 @@
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 <div class="row">
-    <section class="col-md-4 form-inline">
+    <section class="col-sm-5 form-inline">
         <h2>Program</h2>
-        <button id="open-file" class="btn btn-default" title="Open File">
-            <span class="glyphicon glyphicon-folder-open"></span>
-            <span class="sr-only">Open File</span>
-        </button>
-        <input id="file-name" type="text" class="form-control" />
-        <input id="befunge-file" type="file" class="hidden" />
-        <button id="save-file" class="btn btn-default" title="Save File">
-            <span class="glyphicon glyphicon-floppy-disk"></span>
+        <div class="input-group">
+            <label class="btn btn-default input-group-addon" title="Load File">
+                <span class="glyphicon glyphicon-folder-open "></span>
+                <span class="sr-only">Open File</span>
+                <input id="befunge-file" type="file" style="display: none;">
+            </label>
+            <input id="file-name" type="text" class="form-control" />
+        </div>
+        <button id="save-file" class="btn btn-default" title="Save File" disabled="disabled">
+            <span class="glyphicon glyphicon-hdd"></span>
             <span class="sr-only">Save File</span>
         </button>
 
     </section>
-    <section class="col-md-4">
+    <section class="col-sm-3">
         <h2>Controls</h2>
         <button class="btn btn-primary" title="Reload Torus">
             <span class="glyphicon glyphicon-refresh"></span>
@@ -33,7 +35,7 @@
         </button>
 
     </section>
-    <section class="col-md-4">
+    <section class="col-sm-4">
         <h2>Step Speed</h2>
         <button class="btn btn-info">1</button>
         <button class="btn btn-info">2</button>
@@ -43,14 +45,14 @@
     </section>
 </div>
 <div class="row">
-    <section class="col-md-6">
+    <section class="col-sm-6">
         <div class="form-inline">
             <h2 class="h-horizontal">Output</h2>
             <button class="btn btn-danger by-header" title="Clear Console"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Clear Console</span></button>
         </div>
         <textarea class="form-control" readonly="readonly"></textarea>
     </section>
-    <section class="col-md-6">
+    <section class="col-sm-6">
         <div>
             <h2 class="h-horizontal">Stack</h2>
             <select class="form-control by-header">
@@ -63,12 +65,12 @@
     </section>
 </div>
 <div class="row">
-    <section class="col-md-12">
+    <section class="col-sm-12">
         <textarea cols="80" rows="25" class="hidden"></textarea>
     </section>
 </div>
 <div class="row">
-    <section class="col-md-12">
+    <section class="col-sm-12">
         <h2>The Torus</h2>
         <div id="torus-wrapper">
             <div id="torus">
