@@ -1,9 +1,35 @@
 ﻿(function () {
+    var vector = {
+        n: { xd: 0, yd: -1 },
+        e: { xd: 1, yd: 0 },
+        s: { xd: 0, yd: 1 },
+        w: { xd: -1, yd: 0 }
+    }
+
+    var bFunctions = {
+        'v': function () {
+            befunge.vector = vector.s;
+        },
+
+        '^': function () {
+            befunge.vector = vector.n;
+        },
+
+        '<': function () {
+            befunge.vector = vector.w;
+        },
+
+        '>': function () {
+            befunge.vector = vector.e;
+        }
+    };
+
     var befunge = {
+        vector: vector.e,
         x: 0,
         y: 0,
         height: 25,
-        width: 80   ,
+        width: 80,
         rawText: "",
         parsedText: "",
     };
@@ -33,21 +59,22 @@
         befunge.parsedText = "";
 
         for (var idx = 0; idx < befunge.rawText.length; idx++) {
-            var chr = befunge.rawText.charAt(idx);
-            if (chr === "\n") {
+            var chr = befunge.rawText.charCodeAt(idx);
+            if (chr === 10) {
                 while (x < befunge.width) {
                     befunge.parsedText = befunge.parsedText + " ";
+                    x++;
                 }
                 x = 0;
                 y++;
             }
             else {
+                if (chr !== 13) {
+                    befunge.parsedText = befunge.parsedText + befunge.rawText.charAt(idx);
+                }
                 x++;
             }
 
-            if (chr !== "\r") {
-                befunge.parsedText = befunge.parsedText + chr;
-            }
         }
     }
 
@@ -60,7 +87,7 @@
         $torus.children().remove();
         for (var y = 0; y <= befunge.height; y++) {
             var $torusRow = $("<div class='torus-row'></div>");
-            for (var x = 0; x <= befunge.width; x++) {
+            for (var x = 0; x < befunge.width; x++) {
                 var $input = $("<input id='" + getTorusId(x, y) + "' type='text' maxlength='1' />");
                 var idx = (y * befunge.width) + x;
                 $input.val(befunge.parsedText.charAt(idx));
@@ -70,24 +97,51 @@
         }
     }
 
+    function getCurrentCell() {
+        return $("#" + getTorusId(befunge.x, befunge.y));
+    }
+
     function activateCurrentCell() {
         $(".torus-row").children().removeClass("active-cell");
-        var currentCell = $("#" + getTorusId(befunge.x, befunge.y));
-        currentCell.addClass("active-cell");
+        getCurrentCell().addClass("active-cell");
+    }
+
+    function performCurrentCell() {
+        var currentCell = getCurrentCell();
+        var currentVal = currentCell.val();
+        if (bFunctions[currentVal] !== null) {
+            bFunctions[currentVal]();
+        }
+    }
+
+    function moveCursor() {
+        befunge.x = befunge.x + befunge.vector.xd;
+        befunge.y = befunge.y + befunge.vector.yd;
+
+        if (befunge.x >= befunge.width) {
+            befunge.x = 0;
+        }
+        if (befunge.x < 0) {
+            befunge.x = befunge.width - 1;
+        }
+        if (befunge.y >= befunge.height) {
+            befunge.y = 0;
+        }
+        if (befunge.y < 0) {
+            befungey.y = befunge.height - 1;
+        }
     }
 
     function oneStep() {
-        befunge.x = befunge.x + 1;
-        if (befunge.x > befunge.width) {
-            befunge.x = 0;
-        }
+        moveCursor();
         activateCurrentCell();
+        performCurrentCell();
     }
 
     function startRun() {
         $("#befunge-run").attr("disabled", "disabled");
         activateCurrentCell();
-        befunge.interval = setInterval(oneStep, 200);
+        befunge.interval = setInterval(oneStep, 100);
         $("#befunge-pause").removeAttr("disabled");
     }
 
@@ -97,12 +151,40 @@
         $("#befunge-run").removeAttr("disabled");
     }
 
+    function initStockPrograms() {
+        var $select = $("#befunge-stock-files");
+        for (var program in stockPrograms) {
+            $select.append($("<option value='" + program + "'>" + program + "</option>"));
+        }
+        $select.change(function (e) {
+            var fileName = $select.val();
+            var dummyResponse = {
+                target: {
+                    result: stockPrograms[fileName]
+                }
+            };
+            loadBefunge(dummyResponse);
+            $("#file-name").val(fileName);
+        });
+    }
+
     $(document).ready(function () {
         if ($("h1").text() === "Befunge") {
             $("#befunge-file").change(readFile);
             drawTorus();
             $("#befunge-run").click(startRun);
             $("#befunge-pause").click(pauseRun);
+            initStockPrograms();
         }
     });
+
+    var stockPrograms = {
+        "helloWorld.bf":
+            "64+\"!dlroW ,olleH\">:#,_@",
+        "99bottles.bf":
+            '"d"4vv"take one down, pass it around"<>' + "\n" +
+            ':-2*< v "e wall"_v#\\0`1%4./4::_0#%>#4^#' + "\n" +
+            '\\4>/|>:#,_$:55+:,\\4%3-!*0\\>:>#,_$$:1+\\1' + "\n" +
+            '>>>#@^>$"ht no "\\>\\"reeb fo selttob">>>' + "\n"
+    };
 })();

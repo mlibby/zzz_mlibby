@@ -3,23 +3,30 @@
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 <div class="row">
-    <section class="col-sm-5 form-inline">
-        <h2>Program</h2>
-        <div class="input-group">
-            <label class="btn btn-default input-group-addon" title="Load File">
-                <span class="glyphicon glyphicon-folder-open "></span>
-                <span class="sr-only">Open File</span>
-                <input id="befunge-file" type="file" style="display: none;">
-            </label>
-            <input id="file-name" type="text" class="form-control" />
+    <section class="col-sm-6">
+        <div>
+            <h2 class="h-horizontal">File</h2>
+            <select id="befunge-stock-files" class="form-control by-header">
+                <option selected="selected" value="0">Choose a stock program...</option>
+            </select>
         </div>
-        <button id="save-file" class="btn btn-default" title="Save File" disabled="disabled">
-            <span class="glyphicon glyphicon-hdd"></span>
-            <span class="sr-only">Save File</span>
-        </button>
+        <div class="form-inline">
+            <div class="input-group">
+                <label class="btn btn-default input-group-addon" title="Load File">
+                    <span class="glyphicon glyphicon-folder-open "></span>
+                    <span class="sr-only">Open File</span>
+                    <input id="befunge-file" type="file" style="display: none;">
+                </label>
+                <input id="file-name" type="text" class="form-control" />
+            </div>
+            <button id="save-file" class="btn btn-default" title="Save File" disabled="disabled">
+                <span class="glyphicon glyphicon-hdd"></span>
+                <span class="sr-only">Save File</span>
+            </button>
+        </div>
 
     </section>
-    <section class="col-sm-3">
+    <section class="col-xs-6 col-sm-3">
         <h2>Controls</h2>
         <button class="btn btn-primary" title="Reload Torus">
             <span class="glyphicon glyphicon-refresh"></span>
@@ -35,13 +42,16 @@
         </button>
 
     </section>
-    <section class="col-sm-4">
-        <h2>Step Speed</h2>
-        <button class="btn btn-info">1</button>
-        <button class="btn btn-info">2</button>
-        <button class="btn btn-info">4</button>
-        <button class="btn btn-info">8</button>
-        <button class="btn btn-info">16</button>
+    <section class="col-xs-6 col-sm-3">
+        <h2>Speed</h2>
+        <button class="btn btn-info" title="Slower">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+            <span class="sr-only">Slower</span>
+        </button>
+        <button class="btn btn-info" title="Faster">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="sr-only">Faster</span>
+        </button>
     </section>
 </div>
 <div class="row">
