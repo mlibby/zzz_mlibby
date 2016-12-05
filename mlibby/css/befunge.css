@@ -1,5 +1,14 @@
-﻿div.torus, div.torus-row {
-    width: 100%;
+﻿#torus-wrapper {
+    width:100%;
+    overflow-x: scroll;
+
+}
+
+div.torus-row {
+    width: 1134px;
+}
+
+div.torus, div.torus-row {
     margin: 0;
     padding: 0;
     clear: both;
@@ -17,6 +26,11 @@ div.torus-row input {
     background-color: #d0d0d0;
     font-size: 11px;
     font-weight: bold;
+}
+
+div.torus-row input.active-cell {
+    background-color: #ff0000;
+    color: white;
 }
 
 h2.h-horizontal {
