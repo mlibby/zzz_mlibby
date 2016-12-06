@@ -1,7 +1,10 @@
 ﻿#torus-wrapper {
     width:100%;
     overflow-x: scroll;
+}
 
+#befunge-stack, #befunge-output, div.torus-row input {
+    font-family: Consolas,monaco,monospace;
 }
 
 div.torus-row {
@@ -25,7 +28,6 @@ div.torus-row input {
     border-radius: 3px;
     background-color: #d0d0d0;
     font-size: 11px;
-    font-weight: bold;
 }
 
 div.torus-row input.active-cell {

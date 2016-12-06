@@ -145,7 +145,7 @@
                 if (32 <= charCode && charCode <= 126) {
                     addChar = String.fromCharCode(charCode);
                 } else {
-                    addChar = "{" + charCode.toString(10) + "}"
+                    addChar = ("00" + charCode.toString(10)).substr(-3,3)
                 }
             } else if (stackMode === "dec") {
                 addChar = ("00" + charCode.toString(10)).substr(-3, 3);
