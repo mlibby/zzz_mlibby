@@ -6,7 +6,7 @@
         w: { xd: -1, yd: 0 }
     }
 
-    var bFunctions = {
+    var befunctions = {
         'v': function () { befunge.vector = vector.s; },
         '^': function () { befunge.vector = vector.n; },
         '<': function () { befunge.vector = vector.w; },
@@ -24,6 +24,8 @@
         '7': function () { befunge.stack.push(7); },
         '8': function () { befunge.stack.push(8); },
         '9': function () { befunge.stack.push(9); },
+
+
     };
 
     var befunge = {
@@ -119,8 +121,8 @@
     }
 
     function performNonStringMode(currentVal) {
-        if (bFunctions[currentVal] !== undefined) {
-            bFunctions[currentVal]();
+        if (befunctions[currentVal] !== undefined) {
+            befunctions[currentVal]();
         }
     }
 
