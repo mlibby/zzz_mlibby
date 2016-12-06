@@ -225,12 +225,16 @@
     });
 
     var stockPrograms = {
-        "helloWorld.bf":
+        "hello_world.bf":
             "64+\"!dlroW ,olleH\">:#,_@",
-        "99bottles.bf":
+        "99_bottles.bf":
             '"d"4vv"take one down, pass it around"<>' + "\n" +
             ':-2*< v "e wall"_v#\\0`1%4./4::_0#%>#4^#' + "\n" +
             '\\4>/|>:#,_$:55+:,\\4%3-!*0\\>:>#,_$$:1+\\1' + "\n" +
-            '>>>#@^>$"ht no "\\>\\"reeb fo selttob">>>' + "\n"
+            '>>>#@^>$"ht no "\\>\\"reeb fo selttob">>>' + "\n",
+        "pascals_triangle.bf":
+            '0" :swor fo rebmuN">:#,_&> 55+, v' + "\n" +
+            'v01*p00-1:g00.:<1p011p00:\\-1_v#:<' + "\n" +
+            '>g:1+10p/48*,:#^_$ 55+,1+\\: ^>$$@' + "\n",
     };
 })();
