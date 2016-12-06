@@ -7,25 +7,23 @@
     }
 
     var bFunctions = {
-        'v': function () {
-            befunge.vector = vector.s;
-        },
+        'v': function () { befunge.vector = vector.s; },
+        '^': function () { befunge.vector = vector.n; },
+        '<': function () { befunge.vector = vector.w; },
+        '>': function () { befunge.vector = vector.e; },
 
-        '^': function () {
-            befunge.vector = vector.n;
-        },
+        '"': function () { befunge.stringMode = true; },
 
-        '<': function () {
-            befunge.vector = vector.w;
-        },
-
-        '>': function () {
-            befunge.vector = vector.e;
-        },
-
-        '"': function () {
-            befunge.stringMode = true;
-        }
+        '0': function () { befunge.stack.push(0); },
+        '1': function () { befunge.stack.push(1); },
+        '2': function () { befunge.stack.push(2); },
+        '3': function () { befunge.stack.push(3); },
+        '4': function () { befunge.stack.push(4); },
+        '5': function () { befunge.stack.push(5); },
+        '6': function () { befunge.stack.push(6); },
+        '7': function () { befunge.stack.push(7); },
+        '8': function () { befunge.stack.push(8); },
+        '9': function () { befunge.stack.push(9); },
     };
 
     var befunge = {
@@ -113,7 +111,7 @@
     }
 
     function performStringMode(currentVal) {
-        if(currentVal === '"') {
+        if (currentVal === '"') {
             befunge.stringMode = false;
         } else {
             befunge.stack.push(currentVal.charCodeAt(0));
@@ -140,16 +138,24 @@
     function showStack() {
         var stackMode = $("#befunge-stack-mode").val();
         var stackText = "";
-        for(var sdx = 0; sdx < befunge.stack.length; sdx++)
-        {
-            if(stackMode === "asc") {
-                stackText = stackText + String.fromCharCode(befunge.stack[sdx]) + " ";
+        for (var sdx = 0; sdx < befunge.stack.length; sdx++) {
+            var charCode = befunge.stack[sdx];
+            var addChar;
+            if (stackMode === "asc") {
+                if (32 <= charCode && charCode <= 126) {
+                    addChar = String.fromCharCode(charCode);
+                } else {
+                    addChar = "{" + charCode.toString(10) + "}"
+                }
             } else if (stackMode === "dec") {
-                stackText = stackText + befunge.stack[sdx].toString(10) + " ";
+                addChar = ("00" + charCode.toString(10)).substr(-3, 3);
             } else { ///stackmode === "hex"
-                stackText = stackText + befunge.stack[sdx].toString(16) + " ";
+                addChar = ("0" + charCode.toString(16)).substr(-2, 2);
             }
+
+            stackText = stackText + addChar + " ";
         }
+
         $("#befunge-stack").val(stackText);
     }
 
