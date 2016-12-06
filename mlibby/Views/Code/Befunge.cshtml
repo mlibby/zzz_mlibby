@@ -65,13 +65,13 @@
     <section class="col-sm-6">
         <div>
             <h2 class="h-horizontal">Stack</h2>
-            <select class="form-control by-header">
-                <option selected="selected">hexadecimal</option>
-                <option>decimal</option>
-                <option>ascii</option>
+            <select id="befunge-stack-mode" class="form-control by-header">
+                <option value="asc" selected="selected">ascii</option>
+                <option value="dec">decimal</option>
+                <option value="hex">hexadecimal</option>
             </select>
         </div>
-        <textarea class="form-control" readonly="readonly"></textarea>
+        <textarea id="befunge-stack" class="form-control" readonly="readonly"></textarea>
     </section>
 </div>
 <div class="row">

@@ -21,10 +21,15 @@
 
         '>': function () {
             befunge.vector = vector.e;
+        },
+
+        '"': function () {
+            befunge.stringMode = true;
         }
     };
 
     var befunge = {
+        stringMode: false,
         vector: vector.e,
         x: 0,
         y: 0,
@@ -32,6 +37,7 @@
         width: 80,
         rawText: "",
         parsedText: "",
+        stack: []
     };
 
     function readFile() {
@@ -106,12 +112,45 @@
         getCurrentCell().addClass("active-cell");
     }
 
+    function performStringMode(currentVal) {
+        if(currentVal === '"') {
+            befunge.stringMode = false;
+        } else {
+            befunge.stack.push(currentVal.charCodeAt(0));
+        }
+    }
+
+    function performNonStringMode(currentVal) {
+        if (bFunctions[currentVal] !== undefined) {
+            bFunctions[currentVal]();
+        }
+    }
+
     function performCurrentCell() {
         var currentCell = getCurrentCell();
         var currentVal = currentCell.val();
-        if (bFunctions[currentVal] !== null) {
-            bFunctions[currentVal]();
+
+        if (befunge.stringMode) {
+            performStringMode(currentVal);
+        } else {
+            performNonStringMode(currentVal);
         }
+    }
+
+    function showStack() {
+        var stackMode = $("#befunge-stack-mode").val();
+        var stackText = "";
+        for(var sdx = 0; sdx < befunge.stack.length; sdx++)
+        {
+            if(stackMode === "asc") {
+                stackText = stackText + String.fromCharCode(befunge.stack[sdx]) + " ";
+            } else if (stackMode === "dec") {
+                stackText = stackText + befunge.stack[sdx].toString(10) + " ";
+            } else { ///stackmode === "hex"
+                stackText = stackText + befunge.stack[sdx].toString(16) + " ";
+            }
+        }
+        $("#befunge-stack").val(stackText);
     }
 
     function moveCursor() {
@@ -133,9 +172,10 @@
     }
 
     function oneStep() {
+        performCurrentCell();
         moveCursor();
         activateCurrentCell();
-        performCurrentCell();
+        showStack();
     }
 
     function startRun() {
