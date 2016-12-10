@@ -11,6 +11,13 @@
             '0" :swor fo rebmuN">:#,_&> 55+, v' + "\n" +
             'v01*p00-1:g00.:<1p011p00:\\-1_v#:<' + "\n" +
             '>g:1+10p/48*,:#^_$ 55+,1+\\: ^>$$@' + "\n",
+        "sort_integers.bf":
+            'v ' + "\n" +
+            '> 543** >     :#v_ $&>           :#v_ 1 > :0g >    :#v_ $ 1+: 543** `! #v_ 25*,@' + "\n" +
+            '        ^-1p0\\0:<    ^-1 p0\\+1 g0:&<          ^-1\\.:\\<' + "\n" +
+            '                                   ^                                    <' + "\n" +
+            "\n" +
+            '-- Enter # of integers, then the integers --',
     };
 
     const befungeVector = {
@@ -23,16 +30,11 @@
     var Befunge = class {
         constructor() {
             var that = this;
-            this.stringMode = false;
-            this.vector = befungeVector.e;
-            this.x = 0;
-            this.y = 0;
+            this.setDefaults();
             this.height = 25;
             this.width = 80;
             this.rawText = "";
             this.parsedText = "";
-            this.stack = [];
-            this.halted = false;
             this.befunctions = {
                 // Directional
                 'v': function () { that.vector = befungeVector.s; },
@@ -68,10 +70,14 @@
                 ':': function () { that.duplicate(); },
                 '\\': function () { that.swap(); },
                 '$': function () { that.pop(); },
+                'g': function () { that.get(); },
+                'p': function () { that.put(); },
 
                 // I/O
                 ',': function () { that.printChar(); },
                 '.': function () { that.printNumber(); },
+                '&': function () { that.getNumber(); },
+                '~': function () { that.getChar(); },
 
                 // Math
                 '+': function () { that.add(); },
@@ -83,19 +89,63 @@
             };
         }
 
+        getNumber() {
+            var that = this;
+            var $console = $("#befunge-console");
+            this.numberString = "";
+            this.pauseRun();
+            $console.addClass("befunge-get-number");
+            $console.focus();
+            $console.on('keyup', function (e) { that.readNumber(e); })
+        }
+
+        readNumber(e) {
+            var $console = $("#befunge-console");
+            var val = String.fromCharCode(e.which);
+            if (val === " ") {
+                this.push(Number(this.numberString));
+                $console.off('keyup');
+                $console.removeClass("befunge-get-number");
+                this.startRun();
+            } else {
+                if (val >= "0" && val <= "9") {
+                    this.numberString = this.numberString + val;
+                }
+            }
+            $console.val($console.val() + val);
+        }
+
         printNumber() {
-            var $output = $("#befunge-output");
-            var outputText = $output.val();
+            var $console = $("#befunge-console");
+            var outputText = $console.val();
             outputText = outputText + this.pop().toString() + " ";
-            $output.val(outputText);
+            $console.val(outputText);
+        }
+
+        getChar() {
+            var that = this;
+            var $console = $("#befunge-console");
+            this.pauseRun();
+            $console.addClass("befunge-get-char");
+            $console.focus();
+            $console.on('keyup', function (e) { that.readChar(e); });
+        }
+
+        readChar(e) {
+            this.push(String.fromCharCode(e.which));
+            var $console = $("#befunge-console");
+            $console.off('keyup');
+            $console.removeClass("befunge-get-char");
+            this.startRun();
         }
 
         printChar() {
-            var $output = $("#befunge-output");
-            var outputText = $output.val();
+            var $console = $("#befunge-console");
+            var outputText = $console.val();
             var outputCharCode = this.pop();
             outputText = outputText + String.fromCharCode(outputCharCode);
-            $output.val(outputText);
+
+            $console.val(outputText);
         }
 
         duplicate() {
@@ -123,6 +173,39 @@
             }
         }
 
+        put() {
+            var y = this.pop();
+            var x = this.pop();
+            var val = Number(this.pop());
+            if (val >= 32 & val < 127) {
+                val = String.fromCharCode(val);
+            }
+
+            var id = this.getTorusId(x, y);
+            if (id !== "oob") {
+                var $cell = $("#" + id);
+                $cell.val('');
+                $cell.val(val);
+            }
+        }
+
+        get() {
+            var y = this.pop();
+            var x = this.pop();
+            var id = this.getTorusId(x, y);
+            var val = " ";
+
+            if (id !== "oob") {
+                val = $("#" + id).val();
+            }
+
+            if (this.befunctions[val] === undefined) {
+                this.push(val.charCodeAt(0));
+            } else {
+                this.push(val);
+            }
+        }
+
         switchVector(zeroVector, elseVector) {
             var switchVal = this.pop();
             if (switchVal === 0 || switchVal === undefined) {
@@ -147,7 +230,7 @@
         divide() {
             var rhs = this.pop();
             var lhs = this.pop();
-            this.push(Math.floor(lhs / rhs));
+            this.push(Math.round(lhs / rhs));
         }
 
         multiply() {
@@ -175,10 +258,11 @@
         }
 
         readFile() {
+            var that = this;
             var file = $("#befunge-file")[0].files[0];
             if (file) {
                 var fileReader = new FileReader();
-                fileReader.onload = loadBefunge;
+                fileReader.onload = function (e) { that.loadBefunge(e); };
                 fileReader.readAsText(file);
                 $("#file-name").val(file.name);
             } else {
@@ -226,7 +310,11 @@
         }
 
         getTorusId(x, y) {
-            return "cell-" + x + "-" + y;
+            if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
+                return "oob";
+            } else {
+                return "cell-" + x + "-" + y;
+            }
         }
 
         drawTorus() {
@@ -270,7 +358,16 @@
 
         doCurrentCell() {
             var currentCell = this.getCurrentCell();
+
+            if (currentCell.hasClass("befunge-breakpoint")) {
+                this.breakpointed = true;
+            }
+
             var currentVal = currentCell.val();
+
+            if (this.breakpointed) {
+                this.breakpointed = false;
+            }
 
             if (this.stringMode) {
                 this.doStringMode(currentVal);
@@ -304,7 +401,7 @@
         }
 
         moveCursor() {
-            if (!this.halted) {
+            if (!this.halted && !this.breakpointed) {
                 this.x = this.x + this.vector.xd;
                 this.y = this.y + this.vector.yd;
 
@@ -334,7 +431,7 @@
             var that = this;
             $("#befunge-run").addClass("hidden");
             this.activateCurrentCell();
-            this.interval = setInterval(function () { that.oneStep(); }, 0.0010);
+            this.interval = setInterval(function () { that.oneStep(); }, this.intervalMS);
             $("#befunge-pause").removeClass("hidden");
         }
 
@@ -342,6 +439,46 @@
             $("#befunge-pause").addClass("hidden");
             clearInterval(this.interval);
             $("#befunge-run").removeClass("hidden");
+        }
+
+        setDefaults() {
+            this.x = 0;
+            this.y = 0;
+            this.stack = [];
+            this.numberString = "";
+            this.stringMode = false;
+            this.halted = false;
+            this.vector = befungeVector.e;
+            this.intervalMS = 128;
+        }
+
+        reset() {
+            this.pauseRun();
+            this.setDefaults();
+            this.activateCurrentCell();
+        }
+
+        clear() {
+            var $console = $("#befunge-console");
+            $console.val("");
+        }
+
+        slower() {
+            var that = this;
+            clearInterval(this.interval);
+            if (this.intervalMS < 2048) {
+                this.intervalMS = this.intervalMS * 2;
+            }
+            this.interval = setInterval(function () { that.oneStep(); }, this.intervalMS);
+        }
+
+        faster() {
+            var that = this;
+            clearInterval(this.interval);
+            if (this.intervalMS > 1) {
+                this.intervalMS = this.intervalMS / 2;
+            }
+            this.interval = setInterval(function () { that.oneStep(); }, this.intervalMS);
         }
 
         initStockBefungeMenu() {
@@ -371,6 +508,10 @@
             bf.drawTorus();
             $("#befunge-run").click(function () { bf.startRun(); });
             $("#befunge-pause").click(function () { bf.pauseRun(); });
+            $("#befunge-reset").click(function () { bf.reset(); });
+            $("#befunge-clear").click(function () { bf.clear(); });
+            $("#befunge-slower").click(function () { bf.slower(); });
+            $("#befunge-faster").click(function () { bf.faster(); });
             bf.initStockBefungeMenu();
         }
     });

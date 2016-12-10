@@ -31,6 +31,11 @@ div.torus-row input {
 }
 
 div.torus-row input.active-cell {
+    background-color: #00b000;
+    color: white;
+}
+
+div.torus-row input.befunge-breakpoint {
     background-color: #ff0000;
     color: white;
 }
