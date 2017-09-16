@@ -1,0 +1,55 @@
+﻿table.psytzee-scores {
+    margin-bottom: 8px;
+}
+
+.psytzee-scores th {
+    width: 75%;
+}
+
+.psytzee-scores td {
+    width: 25%;
+}
+
+.psytzee-total-score {
+    padding-left: 4px;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.psytzee-die {
+    display: inline-block;
+    font-family: Courier New, Courier, monospace;
+    border: 1px solid black;
+    border-radius: 3px;
+    text-align: center;
+    margin: 0 1px 7px;
+    padding: 2px 4px 0px;
+    color: black;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+.psytzee-die.used {
+    background-color: #c0c0c0;
+}
+
+.psytzee.roll button.discarded,
+.psytzee.re-roll button.discarded {
+    background-color: #f0b0b0;
+}
+
+.psytzee.form-inline {
+}
+
+    .psytzee.form-inline .form-control {
+        padding: 2px 6px;
+        height: auto;
+        width: auto;
+        display: inline-block;
+    }
+
+    .psytzee.form-inline button.form-control {
+        font-family: Courier New, Courier, monospace;
+        font-weight: bold;
+        padding-bottom: 0;
+    }

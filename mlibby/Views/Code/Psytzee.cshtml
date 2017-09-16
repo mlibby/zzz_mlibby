@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Psytzee";
+    Layout = "~/Views/_LayoutPage.cshtml";
+    var random = new Random();
+}
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Scores</h2>
+    </div>
+    <div class="col-sm-4">
+        <table class="psytzee-scores table table-bordered table-condensed">
+            <tr>
+                <th>Ones</th>
+                <td><span id="box-1" class="upper score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Twos</th>
+                <td><span id="box-2" class="upper score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Threes</th>
+                <td><span id="box-3" class="upper score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Fours</th>
+                <td><span id="box-4" class="upper score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Fives</th>
+                <td><span id="box-5" class="upper score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Sixes</th>
+                <td><span id="box-6" class="upper score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Upper Bonus</th>
+                <td><span id="box-upper-bonus" class="score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Upper Total</th>
+                <td><span id="box-upper-total" class="score-box"></span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <table class="psytzee-scores table table-bordered table-condensed">
+            <tr>
+                <th>3 of a Kind</th>
+                <td><span id="box-7" class="lower score-box"></span></td>
+            </tr>
+            <tr>
+                <th>4 of a Kind</th>
+                <td><span id="box-8" class="lower score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Full House</th>
+                <td><span id="box-9" class="lower score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Small Straight</th>
+                <td><span id="box-10" class="lower score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Large Straight</th>
+                <td><span id="box-11" class="lower score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Psytzee</th>
+                <td><span id="box-12" class="lower score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Chance</th>
+                <td><span id="box-13" class="lower score-box"></span></td>
+            </tr>
+            <tr>
+                <th>Lower Total</th>
+                <td><span id="box-lower-total" class="score-box"></span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="psytzee-total-score">Total Score: <span id="total-score">0</span></div>
+    </div>
+    <div class="col-sm-4">
+        <div class="psytzee-total-score">Rolls Used: <span id="dice-rolled">0</span></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="cols-xs-12 col-lg-4 ">
+        <h2>Dice</h2>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-lg-2">
+        <h2>Roll #1</h2>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-lg-2">
+        <h2>Roll #2</h2>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-lg-2">
+        <h2>Roll #3</h2>
+    </div>
+    <div class="cols-xs-12 col-lg-2">
+        <h2>Score in...</h2>
+    </div>
+</div>
+
+@{ for (var y = 1; y <= 13; y++)
+            {
+        <div class="row turn">
+            <input type="hidden" class="turn-number" value="@("turn-" + y.ToString())" />
+            <input type="hidden" class="rolls-taken" value="0" />
+            <div class="cols-xs-12 col-lg-4 ">
+                @{ for (var x = 0; x < 15; x++)
+                    {
+                        <span class="psytzee-die">
+                            @(random.Next(6) + 1)
+                        </span>
+                    }
+                }
+            </div>
+            <div class="col-xs-12 col-sm-4 col-lg-2 psytzee form-inline roll">
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-lg-2 psytzee form-inline re-roll">
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+                <button class="form-control">#</button>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-lg-2 psytzee form-inline final-roll">
+                <button class="form-control" disabled="disabled">#</button>
+                <button class="form-control" disabled="disabled">#</button>
+                <button class="form-control" disabled="disabled">#</button>
+                <button class="form-control" disabled="disabled">#</button>
+                <button class="form-control" disabled="disabled">#</button>
+            </div>
+            <div class="cols-xs-12 col-lg-2 psytzee form-inline">
+                <select class="form-control">
+                    <option value="0">[Select One]</option>
+                    <option value="1">Ones</option>
+                    <option value="2">Twos</option>
+                    <option value="3">Threes</option>
+                    <option value="4">Fours</option>
+                    <option value="5">Fives</option>
+                    <option value="6">Sixes</option>
+                    <option value="7">3 of a Kind</option>
+                    <option value="8">4 of a Kind</option>
+                    <option value="9">Full House</option>
+                    <option value="10">Small Straight</option>
+                    <option value="11">Large Straight</option>
+                    <option value="12">Psytzee</option>
+                    <option value="13">Chance</option>
+                </select>
+            </div>
+        </div>
+                    }
+}

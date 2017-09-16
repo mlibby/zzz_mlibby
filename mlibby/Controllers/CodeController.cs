@@ -23,5 +23,10 @@ namespace mlibby.Controllers
         {
             return View();
         }
+
+        public ActionResult Psytzee()
+        {
+            return View();
+        }
     }
 }

@@ -10,7 +10,8 @@ namespace mlibby
         {
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/js/befunge.js",
-                "~/js/rgb_clock.js"
+                "~/js/rgb_clock.js",
+                "~/js/psytzee.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
@@ -22,8 +23,10 @@ namespace mlibby
                 "~/Content/normalize.css",
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-theme.css",
+                "~/css/site.css",
                 "~/css/main.css",
-                "~/css/befunge.css"
+                "~/css/befunge.css",
+                "~/css/psytzee.css"
                 ));
         }
     }
