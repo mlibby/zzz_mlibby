@@ -121,22 +121,28 @@
     }
 
     function verifyStraight(number, dice) {
+        var verified = false;
         var sortedDice = dice.sort();
-        for (var startingIndex = 0; startingIndex < (6 - number); startingIndex++) {
-            var previousNumber = sortedDice[startingIndex];
-            for (var i = startingIndex + 1; i <= number; i++) {
-                if (sortedDice[i] !== previousNumber + 1) {
-                    if (discards === 0) {
-                        return false;
-                    } else {
-                        discards--;
-                    }
-                } else {
-                    previousNumber = sortedDice[i];
+        var previousNumber = sortedDice[0];
+
+        var count = 1;
+        var previousNumber = sortedDice[0];
+        for (var i = 1; i < sortedDice.length; i++) {
+            if (sortedDice[i] === previousNumber + 1) {
+                count++;
+                if (count >= number) {
+                    verified = true;
+                    break;
+                }
+            } else {
+                if (sortedDice[i] !== sortedDice[i - 1]) {
+                    count = 0;
                 }
             }
+            previousNumber = sortedDice[i];
         }
-        return true;
+
+        return verified;
     }
 
     function scoreTurn(scoreBox, dice) {
