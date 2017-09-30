@@ -98,10 +98,10 @@
     function verifyKind(number, dice) {
         var verified = false;
         var count = 0;
-        for (var x = 0; x < 6; x++) {
+        for (var pips = 1; pips <= 6; pips++) {
             count = 0;
             for (var y = 0; y < 5; y++) {
-                if (dice[y] == x) {
+                if (dice[y] == pips) {
                     count++;
                 }
             }

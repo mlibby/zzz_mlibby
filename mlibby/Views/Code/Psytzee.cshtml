@@ -113,7 +113,7 @@
             <input type="hidden" class="turn-number" value="@("turn-" + y.ToString())" />
             <input type="hidden" class="rolls-taken" value="0" />
             <div class="cols-xs-12 col-lg-4 ">
-                @{ for (var x = 0; x < 15; x++)
+                @{ for (var possibleRolls = 0; possibleRolls < 15; possibleRolls++)
                     {
                         <span class="psytzee-die">
                             @(random.Next(6) + 1)
