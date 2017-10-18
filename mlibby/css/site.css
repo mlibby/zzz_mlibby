@@ -5,3 +5,12 @@
 h2 {
     margin-top: 10px;
 }
+
+.smallish {
+    max-width: 90%;
+    margin: 5%;
+}
+
+figcaption {
+    text-align: center;
+}

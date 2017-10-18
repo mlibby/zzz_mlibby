@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2>Artificial Intelligence</h2>
+        <p>These are practice programs I wrote as I worked through the textbook <a href="http://aima.cs.berkeley.edu/index.html"><cite>Artificial Intelligence: A Modern Approach</cite></a></p>
+        <h3>Chapter 3: Problem Solving</h3>
+        <dl class="parenthetical">
+            <dt>
+                @Html.ActionLink("Search", "Search")
+        </dt>
+        <dd>
+            <a title="Sweet Dreams by the Eurythmics" href="https://www.youtube.com/watch?v=qeMFqkcPYcg">"Everybody's looking for something"</a>
+        </dd>
+    </dl>
+</div>
+</div>
+
+
+@section Styles {
+    <link href="~/css/ai.css" rel="stylesheet" />
+}

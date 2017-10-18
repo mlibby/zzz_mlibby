@@ -1,0 +1,31 @@
+﻿dt {
+    float: left;
+    clear: left;
+    font-weight: bold;
+}
+
+dd {
+    margin: 0 0 0 66px;
+    padding: 0 0 0.5em 0;
+}
+
+.parenthetical dd::before {
+    content: '(';
+}
+
+.parenthetical dd::after {
+    content: ')';
+}
+
+.search-results dt::after {
+    content: ': '
+}
+
+.search-results dt {
+    width: 200px;
+    text-align: right;
+}
+
+.search-results dd {
+    margin: 0 0 0 210px;
+}

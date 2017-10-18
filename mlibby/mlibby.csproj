@@ -133,12 +133,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\normalize.css" />
+    <Content Include="css\ai.css" />
+    <Content Include="img\romania-distances-small.png" />
+    <Content Include="img\romania-distances.png" />
     <Content Include="css\befunge.css" />
     <Content Include="css\main.css" />
     <Content Include="css\psytzee.css" />
     <Content Include="css\site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="js\ai\graph-search.js" />
+    <Content Include="js\ai\search-base.js" />
+    <Content Include="js\ai\search.js" />
+    <Content Include="js\ai\tree-search.js" />
     <Content Include="js\befunge.js" />
     <Content Include="js\psytzee.js" />
     <Content Include="js\rgb_clock.js" />
@@ -164,6 +171,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AiController.cs" />
     <Compile Include="Controllers\CodeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,6 +191,8 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Code\Psytzee.cshtml" />
+    <Content Include="Views\Ai\Index.cshtml" />
+    <Content Include="Views\Ai\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

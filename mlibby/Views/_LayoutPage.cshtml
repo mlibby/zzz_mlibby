@@ -11,9 +11,9 @@
     <meta name="description" content="I am Michael C. Libby and this is my web site. I am a software developer, web developer, and accessibility enthusiast. My friends call me &ldquo;Libby.&rdquo;">
 
     @Styles.Render("~/bundles/css")
+    @RenderSection("Styles", false)
     @Scripts.Render("~/bundles/libs")
-    @Scripts.Render("~/bundles/js")
-    
+
     <link rel="canonical" href="http://mlibby.com/">
 </head>
 
@@ -31,6 +31,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/Home/About/">About Me</a></li>
                     <li><a href="/Code/">My Code</a></li>
+                    <li><a href="/AI/">AI</a></li>
                 </ul>
             </div>
         </div>

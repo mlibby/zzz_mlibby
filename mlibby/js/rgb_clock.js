@@ -68,10 +68,6 @@
     }
 
     $(document).ready(function () {
-        if ($("h1").text() !== 'Befunge') {
-            return;
-        }
-
         setInterval(updatePage, 500);
     });
 })();

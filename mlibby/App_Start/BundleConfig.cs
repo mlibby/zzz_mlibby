@@ -8,12 +8,6 @@ namespace mlibby
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/js/befunge.js",
-                "~/js/rgb_clock.js",
-                "~/js/psytzee.js"
-                ));
-
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/bootstrap.js"

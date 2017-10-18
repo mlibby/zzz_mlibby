@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "AI: Search";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Choose endpoints and search algorithm</h3>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="from-city" class="col-sm-2 control-label">From</label>
+                <div class="col-sm-10">
+                    <select id="from-city" class="form-control"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="to-city" class="col-sm-2 control-label">To</label>
+                <div class="col-sm-10">
+                    <select id="to-city" class="form-control"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="search-algorithm" class="col-sm-2 control-label">Algorithm</label>
+                <div class="col-sm-10">
+                    <select id="search-algorithm" class="form-control">
+                        <option value="tree-search">Tree-Search</option>
+                        <option value="graph-search">Graph-Search</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button id="search" class="btn btn-primary">Find a way</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <figure>
+            <img class="smallish" src="~/img/romania-distances.png" alt="Simplified map of Romanian cities" />
+            <figcaption>A simplified map of Romanian cities from the <cite><a href="http://aima.cs.berkeley.edu/figures.html">AIMA figures page</a></cite>.</figcaption>
+        </figure>
+    </div>
+
+    <div class="col-sm-12">
+        <h3>Results</h3>
+        <dl class="search-results">
+            <dt>
+                Nodes used in search
+            </dt>
+            <dd id="nodes-used">
+                0
+            </dd>
+            <dt>
+                Elapsed search time (ms)
+            </dt>
+            <dd id="elapsed-time">
+                0
+            </dd>
+            <dt>
+                Solution Path
+            </dt>
+            <dd id="solution">
+               ...
+            </dd>
+        </dl>
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/css/ai.css" rel="stylesheet" />
+}
+
+<script type="module" src="~/js/ai/search.js"></script>
