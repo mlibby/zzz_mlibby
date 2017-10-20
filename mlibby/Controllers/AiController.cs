@@ -17,5 +17,15 @@ namespace mlibby.Controllers
         {
             return View();
         }
+
+        public ActionResult Puzzle()
+        {
+            return View();
+        }
+
+        public ActionResult ECMAScript6()
+        {
+            return View();
+        }
     }
 }

@@ -10,7 +10,8 @@ namespace mlibby
         {
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                 "~/Scripts/jquery-{version}.js",
-                "~/Scripts/bootstrap.js"
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/underscore.js"
                 ));
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(

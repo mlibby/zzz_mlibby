@@ -29,3 +29,44 @@ dd {
 .search-results dd {
     margin: 0 0 0 210px;
 }
+
+#puzzle {
+    border: 3px solid black;
+    padding: 5px;
+    float: left;
+    background-color: #c0c0c0;
+}
+
+.puzzle-row {
+}
+
+.puzzle-spot {
+    display: inline-block;
+    font-size: 2em;
+    width: 2.1em;
+    height: 2.1em;
+    padding: 2px;
+}
+
+.tile {
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid black;
+    line-height: 1.8em;
+    background-color: white;
+    border-radius: 2px;
+    margin: 0;
+}
+
+.tile.empty {
+    border: 0;
+    background-color: #c0c0c0;
+}
+
+#shuffle-tiles {
+    margin-top: 15px;
+}
+
+.search-results {
+    margin-bottom: 5px;
+}

@@ -3,6 +3,11 @@
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 <div class="row">
+    <div class="col-sm-12">
+        <p>
+            Some browsers may not be ready for this code, if you don't see working examples, please check @Html.ActionLink("my page on enabling ECMAScript6", "ECMAScript6").
+        </p>
+    </div>
     <div class="col-sm-6">
         <h3>Choose endpoints and search algorithm</h3>
         <form class="form-horizontal">
@@ -33,17 +38,9 @@
                 </div>
             </div>
         </form>
-    </div>
-    <div class="col-sm-6">
-        <figure>
-            <img class="smallish" src="~/img/romania-distances.png" alt="Simplified map of Romanian cities" />
-            <figcaption>A simplified map of Romanian cities from the <cite><a href="http://aima.cs.berkeley.edu/figures.html">AIMA figures page</a></cite>.</figcaption>
-        </figure>
-    </div>
 
-    <div class="col-sm-12">
         <h3>Results</h3>
-        <dl class="search-results">
+        <dl class="search-results"> 
             <dt>
                 Nodes used in search
             </dt>
@@ -63,6 +60,16 @@
                ...
             </dd>
         </dl>
+    </div>
+
+    <div class="col-md-1 hidden-sm"></div>
+
+    <div class="col-sm-6 col-md-5">
+        <h3>A Map</h3>
+        <figure>
+            <img class="smallish" src="~/img/romania-distances.png" alt="Simplified map of Romanian cities" />
+            <figcaption>A simplified map of Romanian cities from the <cite><a href="http://aima.cs.berkeley.edu/figures.html">AIMA figures page</a></cite>.</figcaption>
+        </figure>
     </div>
 </div>
 

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "ECMAScript6";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div class="row">
+    <div class="col-sm-12">
+        <h2>Setting Your Browser to Work with ECMAScript6</h2>
+        <p>ECMAScript6 is the newest version of Javascript. This is the version I am using to code all my work for these Artificial Intelligence pieces. Your browser may have some or all of ES6 ready to go, but still require you, the user, to "opt in". Read on if you need some guidance. Enabling these options may seem a bit scary, but most can be turned off again by pretty obvious means.</p>
+        <h3>Microsoft Edge</h3>
+        <ol>
+            <li>Click in your address bar and type in <code>about:flags</code>.</li>
+            <li>Scroll until you find the option "Enable experimental JavaScript features" in the JavaScript section.</li>
+            <li>Check the checkbox for that option. Or verify that it is checked.</li>
+            <li>Restart the browser if you changed the checkbox.</li>
+        </ol>
+        <h3>Mozilla Firefox</h3>
+        <ol>
+            <li>Click in your address bar and type in <code>about:config</code>.</li>
+            <li>Read scary warning about how this might void your warranty.</li>
+            <li>Click "I Accept the Risk" button.</li>
+            <li>Find the "dom.moduleScripts.enabled" preference name.</li>
+            <li>If the option's value is "false", right-click on the option and choose "Toggle".</li>
+            <li>I don't think you have to restart, but you might.</li>
+        </ol>
+        <h3>Google Chrome</h3>
+        <ol>
+            <li>Click in your address bar and type in <code>chrome://flags</code>.</li>
+            <li>Find the option for "Latest stable JavaScript features".</li>
+            <li>If the option says "disabled", double-click it to enable.</li>
+        </ol>
+    </div>
+</div>

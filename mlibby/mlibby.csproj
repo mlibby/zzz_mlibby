@@ -143,6 +143,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="js\ai\graph-search.js" />
+    <Content Include="js\ai\puzzle.js" />
+    <Content Include="js\ai\solve-puzzle.js" />
     <Content Include="js\ai\search-base.js" />
     <Content Include="js\ai\search.js" />
     <Content Include="js\ai\tree-search.js" />
@@ -165,6 +167,8 @@
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +197,9 @@
     <Content Include="Views\Code\Psytzee.cshtml" />
     <Content Include="Views\Ai\Index.cshtml" />
     <Content Include="Views\Ai\Search.cshtml" />
+    <Content Include="Views\Ai\Puzzle.cshtml" />
+    <Content Include="Views\Ai\ECMAScript6.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
