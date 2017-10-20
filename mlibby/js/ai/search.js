@@ -1,7 +1,5 @@
 ﻿export class Search {
-    constructor(initialState, goalState, searchable) {
-        this.initialState = initialState;
-        this.goalState = goalState;
+    constructor(searchable) {
         this.searchable = searchable;
 
         this.nodesUsed = 0;
@@ -17,7 +15,8 @@
     }
 
     buildSolution(node) {
-        while (node !== null) {
+        // initial state is NOT part of the solution
+        while (node.parent !== null) {
             this.solution.unshift(node);
             node = node.parent;
         }

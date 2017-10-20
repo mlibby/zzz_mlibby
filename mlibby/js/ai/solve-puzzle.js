@@ -3,7 +3,7 @@ import { TreeSearch } from './tree-search.js';
 import { GraphSearch } from './graph-search.js';
 
 function displayPuzzle(puzzle) {
-    $.each(puzzle.tiles, (index, tileValue) => {
+    $.each(puzzle.initialState.split(''), (index, tileValue) => {
         let spot = $('#spot-' + (index + 1));
         let tile = $('#number-' + tileValue).remove();
         spot.append(tile);
@@ -26,18 +26,27 @@ $(document).ready(function () {
         let searchAlgorithm = $('#search-algorithm').val();
         let search = null;
 
-        let initialState = null;
-        let goalState = null;
-
         switch (searchAlgorithm) {
             case 'tree-search':
-                search = new TreeSearch(initialState, goalState, puzzle);
+                search = new TreeSearch(puzzle);
                 break;
             case 'graph-search':
-                search = new GraphSearch(initialState, goalState, puzzle);
+                search = new GraphSearch(puzzle);
                 break;
         }
 
         search.search();
+
+        $('#elapsed-time').text((search.endTime - search.startTime).toFixed(6));
+        $('#nodes-used').text(search.nodesUsed);
+
+        let $solution = $('#solution');
+
+        if (search.solution.length > 0) {
+            $solution.text('');
+            $solution.append(search.solution.map((node) => node.action).join(', '));
+        } else {
+            $solution.text('Failed to find solution');
+        }
     });
 });

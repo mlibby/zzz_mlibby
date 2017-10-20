@@ -3,10 +3,10 @@ import { GraphSearch } from './graph-search.js';
 import { Romania } from './romania.js';
 
 $(document).ready(function () {
+    let romania = new Romania();
+
     let $fromCity = $('#from-city');
     let $toCity = $('#to-city');
-
-    let romania = new Romania();
 
     for (const city of romania.cities.sort()) {
         $fromCity.append($('<option value="' + city + '">' + city + '</option>'));
@@ -16,18 +16,18 @@ $(document).ready(function () {
     $('#search').on('click', function (e) {
         e.preventDefault();
 
-        var searchAlgorithm = $('#search-algorithm').val();
-        var search = null;
+        let searchAlgorithm = $('#search-algorithm').val();
+        let search = null;
 
-        var initialState = $fromCity.val();
-        var goalState = $toCity.val();
+        romania.initialState = $fromCity.val();
+        romania.goalState = $toCity.val();
 
         switch (searchAlgorithm) {
             case 'tree-search':
-                search = new TreeSearch(initialState, goalState, romania);
+                search = new TreeSearch(romania);
                 break;
             case 'graph-search':
-                search = new GraphSearch(initialState, goalState, romania);
+                search = new GraphSearch(romania);
                 break;
         }
 
@@ -37,7 +37,8 @@ $(document).ready(function () {
         $('#nodes-used').text(search.nodesUsed);
 
         let $solution = $('#solution');
-        $solution.text('');
+        $solution.text(romania.initialState);
+        $solution.append($('<br />'));
 
         for (let x = 0; x < search.solution.length; x++) {
             $solution.append(search.solution[x].action);

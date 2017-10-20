@@ -27,8 +27,8 @@ let edges = [
 ];
 
 export class Romania extends Graph {
-    constructor() {
-        super(edges);
+    constructor(initialState = null, goalState = null) {
+        super(initialState, goalState, edges);
     }
 
     get cities() {

@@ -2,8 +2,8 @@
 import { SearchNode } from './search-node.js'
 
 export class Graph extends Searchable {
-    constructor(edges) {
-        super();
+    constructor(initialState, goalState, edges) {
+        super(initialState, goalState);
         this.edges = edges;
         this.graph = {};
         this.buildGraph()
