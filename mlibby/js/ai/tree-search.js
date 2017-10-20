@@ -1,21 +1,21 @@
-﻿import { SearchBase } from './search-base.js';
+﻿import { Search } from './search.js';
+import { SearchNode } from './search-node.js';
 
-export class TreeSearch extends SearchBase {
+export class TreeSearch extends Search {
     search() {
         this.startTime = performance.now();
 
-        this.frontier.push([this.initialState]);
+        this.frontier.push(new SearchNode(this.initialState));
         this.nodesUsed++;
 
         while (this.frontier.length > 0) {
             let leafNode = this.frontier.shift();
-            let lastState = leafNode[leafNode.length - 1];
-            if (lastState == this.goalState) {
-                this.solution = leafNode;
+            if (leafNode.state == this.goalState) {
+                this.buildSolution(leafNode);
                 break;
             } else {
-                lastState.to.forEach( (value, key, map) => {
-                    this.frontier.push(leafNode.concat(key));
+                this.searchable.expandNode(leafNode).forEach((node) => {
+                    this.frontier.push(node);
                     this.nodesUsed++;
                 });
             }

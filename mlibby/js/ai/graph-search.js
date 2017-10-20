@@ -1,6 +1,7 @@
-﻿import { SearchBase } from './search-base.js';
+﻿import { Search } from './search.js';
+import { SearchNode } from './search-node.js';
 
-export class GraphSearch extends SearchBase {
+export class GraphSearch extends Search {
     constructor(initialState, goalState, graph) {
         super(initialState, goalState, graph);
         this.explored = [];
@@ -9,23 +10,22 @@ export class GraphSearch extends SearchBase {
     search() {
         this.startTime = performance.now();
 
-        this.frontier.push([this.initialState]);
+        this.frontier.push(new SearchNode(this.initialState));
         this.nodesUsed++;
 
         this.explored.push(this.initialState);
 
         while (this.frontier.length > 0) {
             let leafNode = this.frontier.shift();
-            let lastState = leafNode[leafNode.length - 1];
-            if (lastState == this.goalState) {
-                this.solution = leafNode;
+            if (leafNode.state == this.goalState) {
+                this.buildSolution(leafNode);
                 break;
             } else {
-                lastState.to.forEach((value, key, map) => {
-                    if (-1 === this.explored.indexOf(key)) {
-                        this.frontier.push(leafNode.concat(key));
+                this.searchable.expandNode(leafNode).forEach((node) => {
+                    if (-1 === this.explored.indexOf(node.state)) {
+                        this.frontier.push(node);
                         this.nodesUsed++;
-                        this.explored.push(key);
+                        this.explored.push(node.state);
                     }
                 });
             }
