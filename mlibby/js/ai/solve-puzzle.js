@@ -2,6 +2,8 @@
 import { TreeSearch } from './tree-search.js';
 import { GraphSearch } from './graph-search.js';
 
+let $watchSolution = $('#watch-solution');
+
 function displayPuzzle(puzzle) {
     $.each(puzzle.initialState.split(''), (index, tileValue) => {
         let spot = $('#spot-' + (index + 1));
@@ -45,8 +47,10 @@ $(document).ready(function () {
         if (search.solution.length > 0) {
             $solution.text('');
             $solution.append(search.solution.map((node) => node.action).join(', '));
+            $watchSolution.removeAttr('disabled');
         } else {
             $solution.text('Failed to find solution');
+            $watchSolution.attr('disabled', 'disabled')
         }
     });
 });
