@@ -13,7 +13,7 @@ function displayPuzzle(puzzle) {
         let spot = $('#spot-' + (index + 1));
         let tile = $('#number-' + tileValue).remove();
         spot.append(tile);
-    })
+    });
 }
 
 function refreshPuzzle() {
@@ -56,6 +56,35 @@ function getSearch() {
     return search;
 }
 
+function slideTile(tileNumber) {
+    let $tile = $("#number-" + tileNumber);
+    let $empty = $("#number-9");
+    let tilePosition = $tile.position();
+    let emptyPosition = $empty.position();
+    let newTop = emptyPosition.top - tilePosition.top;
+    let newLeft = emptyPosition.left - tilePosition.left;
+    $tile.animate({ top: newTop, left: newLeft }, 333, function () {
+        let $emptySpot = $empty.parent();
+        let $tileSpot = $tile.parent();
+        $empty.remove();
+        $tile.remove();
+        $tile.css('top', 0);
+        $tile.css('left', 0);
+        $emptySpot.append($tile);
+        $tileSpot.append($empty);
+    });
+}
+
+function watchSolution() {
+    $watchSolution.attr('disabled', 'disabled');
+    let moves = $solution.text().split(', ');
+    for (let index in moves) {
+        setTimeout(function () {
+            slideTile(moves[index]);
+        }, index * 500);
+    }
+}
+
 $(document).ready(function () {
     $elapsedTime = $('#elapsed-time');
     $nodesUsed = $('#nodes-used');
@@ -79,5 +108,10 @@ $(document).ready(function () {
             search.search();
             displayResults(search);
         }, 100);
+    });
+
+    $('#watch-solution').on('click', function (e) {
+        e.preventDefault();
+        watchSolution();
     });
 });
