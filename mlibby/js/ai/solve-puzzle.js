@@ -1,6 +1,5 @@
 ﻿import { Puzzle } from './puzzle.js';
-import { TreeSearch } from './tree-search.js';
-import { GraphSearch } from './graph-search-bfs.js';
+import { BreadthFirstSearch } from './graph-search-bfs.js';
 import { DepthFirstSearch } from './graph-search-dfs.js';
 
 let puzzle = null;
@@ -47,16 +46,14 @@ function getSearch() {
     let search = null;
 
     switch (searchAlgorithm) {
-        case 'tree-search':
-            search = new TreeSearch(puzzle);
+        case 'graph-search-bfs':
+            search = new BreadthFirstSearch(puzzle);
             break;
-        case 'breadth-first-search':
-            search = new GraphSearch(puzzle);
-            break;
-        case 'depth-first-search':
-            search = new GraphSearch(puzzle, new );
+        case 'graph-search-dfs':
+            search = new DepthFirstSearch(puzzle);
             break;
     }
+
     return search;
 }
 
