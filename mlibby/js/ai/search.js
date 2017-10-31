@@ -1,9 +1,12 @@
-﻿export class Search {
-    constructor(searchable) {
+﻿import { FifoQueue } from './fifo-queue.js';
+
+export class Search {
+    constructor(searchable, frontier) {
         this.searchable = searchable;
+        this.frontier = frontier;
 
         this.nodesUsed = 0;
-        this.frontier = [];
+
         this.startTime = null;
         this.endTime = null;
 

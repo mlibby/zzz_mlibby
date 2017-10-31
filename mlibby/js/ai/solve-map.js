@@ -1,5 +1,6 @@
 ﻿import { TreeSearch } from './tree-search.js';
-import { GraphSearch } from './graph-search.js';
+import { BreadthFirstSearch } from './graph-search-bfs.js';
+import { DepthFirstSearch } from './graph-search-dfs.js';
 import { Romania } from './romania.js';
 
 $(document).ready(function () {
@@ -26,8 +27,11 @@ $(document).ready(function () {
             case 'tree-search':
                 search = new TreeSearch(romania);
                 break;
-            case 'graph-search':
-                search = new GraphSearch(romania);
+            case 'graph-search-bfs':
+                search = new BreadthFirstSearch(romania);
+                break;
+            case 'graph-search-dfs':
+                search = new DepthFirstSearch(romania);
                 break;
         }
 

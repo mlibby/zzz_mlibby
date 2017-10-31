@@ -1,6 +1,7 @@
 ﻿import { Puzzle } from './puzzle.js';
 import { TreeSearch } from './tree-search.js';
-import { GraphSearch } from './graph-search.js';
+import { GraphSearch } from './graph-search-bfs.js';
+import { DepthFirstSearch } from './graph-search-dfs.js';
 
 let puzzle = null;
 let $elapsedTime = null;
@@ -49,8 +50,11 @@ function getSearch() {
         case 'tree-search':
             search = new TreeSearch(puzzle);
             break;
-        case 'graph-search':
+        case 'breadth-first-search':
             search = new GraphSearch(puzzle);
+            break;
+        case 'depth-first-search':
+            search = new GraphSearch(puzzle, new );
             break;
     }
     return search;

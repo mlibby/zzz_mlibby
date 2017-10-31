@@ -1,16 +1,15 @@
 ﻿@{
-    ViewBag.Title = "AI: Puzzle";
+    ViewBag.Title = "AI: 8 Puzzle";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 <div class="row">
     <div class="col-sm-12">
-        <h2>Solving Puzzles</h2>
-        <p>Solve the puzzle using a given "search" algorithm. I guess they're called searches because they search for the right answer. Many of these searches use the basic code used by my @Html.ActionLink("map searches", "Search") page.</p>
+        <h2>Solving the 8 Puzzle</h2>
         <p>
-            The puzzle consists of a 3x3 board with eight numbered tiles and an empty spot. A tile adjacent to the empty spot can slide into that spot. The goal of the puzzle is to order all of the tiles numerically.
+            The 8 Puzzle consists of a 3x3 board with eight numbered tiles and an empty spot. A tile adjacent to the empty spot can slide into that spot. The goal of the puzzle is to order all of the tiles numerically, leaving the empty spot in the lower-right corner.
         </p>
         <p>
-            Some browsers may not be ready for this code, if you don't see working examples, please check @Html.ActionLink("my page on enabling ECMAScript6", "ECMAScript6").
+            Some browsers may not be ready for this code, if you don't see working examples, please check @Html.ActionLink("my page on enabling ECMAScript6", "ECMAScript6"). Many of these algorithms are also used on my @Html.ActionLink("map searches", "Search") page. It's all in Git at <a href="https://github.com/mlibby/mlibby">my GitHub repo</a>.
         </p>
     </div>
 </div>
@@ -64,7 +63,8 @@
                 <div class="col-sm-10">
                     <select id="search-algorithm" class="form-control">
                         <option value="tree-search" disabled="disabled">Tree-Search</option>
-                        <option value="graph-search">Graph-Search</option>
+                        <option value="graph-search">Graph-Search (breadth first)</option>
+                        <option value="graph-search">Graph-Search (depth first)</option>
                     </select>
                 </div>
             </div>

@@ -143,8 +143,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="js\ai\graph-search.js" />
+    <Content Include="js\ai\graph-search-dfs.js" />
+    <Content Include="js\ai\lifo-queue.js" />
+    <Content Include="js\ai\graph-search-bfs.js" />
     <Content Include="js\ai\graph.js" />
     <Content Include="js\ai\puzzle.js" />
+    <Content Include="js\ai\fifo-queue.js" />
+    <Content Include="js\ai\queue.js" />
     <Content Include="js\ai\romania.js" />
     <Content Include="js\ai\search-node.js" />
     <Content Include="js\ai\searchable.js" />
