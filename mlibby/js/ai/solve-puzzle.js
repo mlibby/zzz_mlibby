@@ -88,6 +88,8 @@ function watchSolution() {
     if (puzzleSolution.length > 0) {
         let move = puzzleSolution.shift();
         slideTile(move);
+    } else {
+        puzzleSolution = null;
     }
 }
 
