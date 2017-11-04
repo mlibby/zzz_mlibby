@@ -1,4 +1,5 @@
-﻿export class Searchable {
+﻿//export 
+class Searchable {
     constructor(initialState, goalState) {
         this.initialState = initialState;
         this.goalState = goalState;

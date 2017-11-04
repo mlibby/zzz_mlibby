@@ -1,7 +1,8 @@
-﻿import { Searchable } from './searchable.js'
-import { SearchNode } from './search-node.js'
+﻿//import { Searchable } from './searchable.js'
+//import { SearchNode } from './search-node.js'
 
-export class Graph extends Searchable {
+//export
+class Graph extends Searchable {
     constructor(initialState, goalState, edges) {
         super(initialState, goalState);
         this.edges = edges;
@@ -16,7 +17,7 @@ export class Graph extends Searchable {
     expandNode(node) {
         let nodes = [];
         this.graph[node.state].forEach((cost, vertice) => {
-            nodes.push(new SearchNode(vertice, node, vertice, cost));
+            nodes.push(new SearchNode(vertice, node, vertice, cost + node.pathCost));
         });
         return nodes;
     }

@@ -1,12 +1,11 @@
-﻿import { Puzzle } from './puzzle.js';
-import { BreadthFirstSearch } from './graph-search-bfs.js';
-import { DepthFirstSearch } from './graph-search-dfs.js';
-
-let puzzle = null;
+﻿let puzzle = null;
+let puzzleSolution = null;
 let $elapsedTime = null;
 let $nodesUsed = null;
+let $pathCost = null;
 let $solution = null;
 let $watchSolution = null;
+
 
 function displayPuzzle(puzzle) {
     $.each(puzzle.initialState.split(''), (index, tileValue) => {
@@ -24,6 +23,7 @@ function refreshPuzzle() {
 function clearResults() {
     $elapsedTime.text('...');
     $nodesUsed.text('...');
+    $pathCost.text('...');
     $solution.text('...');
 }
 
@@ -32,6 +32,7 @@ function displayResults(search) {
     $nodesUsed.text(search.nodesUsed);
 
     if (search.solution.length > 0) {
+        $pathCost.text(search.solution[search.solution.length - 1].pathCost);
         $solution.text('');
         $solution.append(search.solution.map((node) => node.action).join(', '));
         $watchSolution.removeAttr('disabled');
@@ -51,6 +52,9 @@ function getSearch() {
             break;
         case 'graph-search-dfs':
             search = new DepthFirstSearch(puzzle);
+            break;
+        case 'uniform-cost-search':
+            search = new UniformCostSearch(puzzle);
             break;
     }
 
@@ -73,22 +77,24 @@ function slideTile(tileNumber) {
         $tile.css('left', 0);
         $emptySpot.append($tile);
         $tileSpot.append($empty);
+        watchSolution();
     });
 }
 
 function watchSolution() {
     $watchSolution.attr('disabled', 'disabled');
-    let moves = $solution.text().split(', ');
-    for (let index in moves) {
-        setTimeout(function () {
-            slideTile(moves[index]);
-        }, index * 500);
+    puzzleSolution = puzzleSolution || $solution.text().split(', ');
+
+    if (puzzleSolution.length > 0) {
+        let move = puzzleSolution.shift();
+        slideTile(move);
     }
 }
 
 $(document).ready(function () {
     $elapsedTime = $('#elapsed-time');
     $nodesUsed = $('#nodes-used');
+    $pathCost = $('#path-cost');
     $solution = $('#solution');
     $watchSolution = $('#watch-solution');
 

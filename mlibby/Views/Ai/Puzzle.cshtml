@@ -65,6 +65,7 @@
                         <option value="tree-search" disabled="disabled">Tree-Search</option>
                         <option value="graph-search-bfs">Graph-Search (breadth first)</option>
                         <option value="graph-search-dfs">Graph-Search (depth first)</option>
+                        <option value="uniform-cost-search">Uniform-Cost-Search</option>
                     </select>
                 </div>
             </div>
@@ -91,6 +92,10 @@
             <dd id="elapsed-time">
                 0
             </dd>
+            <dt>Path Cost</dt>
+            <dd id="path-cost">
+                0
+            </dd>
             <dt>
                 Solution Path
             </dt>
@@ -113,5 +118,7 @@
     <link href="~/css/ai.css" rel="stylesheet" />
 }
 
-<script type="module" src="~/js/ai/solve-puzzle.js">
-</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/ai")
+}
+<script src="~/js/ai/solve-puzzle.js"></script>

@@ -1,4 +1,4 @@
-﻿import { Graph } from './graph.js';
+﻿//import { Graph } from './graph.js';
 
 let edges = [
     ['Arad', 140, 'Sibiu'],
@@ -26,7 +26,9 @@ let edges = [
     ['Urziceni', 142, 'Vaslui']
 ];
 
-export class Romania extends Graph {
+//export
+
+class Romania extends Graph {
     constructor(initialState = null, goalState = null) {
         super(initialState, goalState, edges);
     }

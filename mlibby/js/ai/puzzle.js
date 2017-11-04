@@ -1,5 +1,5 @@
-﻿import { Searchable } from './searchable.js';
-import { SearchNode } from './search-node.js';
+﻿//import { Searchable } from './searchable.js';
+//import { SearchNode } from './search-node.js';
 
 let slideMatrix = {
     0: [1, 3],
@@ -13,7 +13,8 @@ let slideMatrix = {
     8: [5, 7]
 };
 
-export class Puzzle extends Searchable {
+//export 
+class Puzzle extends Searchable {
     constructor() {
         let initialState = _.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]).join('');
         let goalState = '123456789';
@@ -28,7 +29,7 @@ export class Puzzle extends Searchable {
         for (const move of moves) {
             let tileValue = node.state[move];
             let state = node.state.replace('9', 'x').replace(tileValue, '9').replace('x', tileValue);
-            let newNode = new SearchNode(state, node, tileValue, 1);
+            let newNode = new SearchNode(state, node, tileValue, node.pathCost + 1);
             expandeds.push(newNode);
         }
 

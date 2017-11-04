@@ -1,14 +1,20 @@
-﻿export class Queue {
+﻿//export 
+class Frontier {
     constructor() {
         this.queue = [];
+        this.set = new Set();
     }
 
     get length() {
         return this.queue.length;
     }
 
-    add(element) {
+    add(node) {
         console.log("Queue.add() not implemented");
+    }
+
+    has(state) {
+        return this.set.has(state);
     }
 
     remove() {

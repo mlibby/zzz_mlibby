@@ -1,4 +1,5 @@
-﻿export class Search {
+﻿//export 
+class Search {
     constructor(searchable, frontier) {
         this.searchable = searchable;
         this.frontier = frontier;

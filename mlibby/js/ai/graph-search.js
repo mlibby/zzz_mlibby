@@ -1,34 +1,46 @@
-﻿import { Search } from './search.js';
-import { SearchNode } from './search-node.js';
+﻿//import { Search } from './search.js';
+//import { SearchNode } from './search-node.js';
 
-export class GraphSearch extends Search {
+//export
+class GraphSearch extends Search {
     constructor(searchable, frontier) {
         super(searchable, frontier);
         this.explored = new Set();
     }
 
+    searchChildNode(node) {
+        this.nodesUsed++;
+        if (!this.explored.has(node.state) &&
+            !this.frontier.has(node.state)) {
+            if (this.searchable.isGoal(node.state)) {
+                this.buildSolution(node);
+            } else {
+                this.frontier.add(node);
+            }
+        }
+    }
+
+    searchFrontier() {
+        while (this.frontier.length > 0 && this.solution.length === 0) {
+            let node = this.frontier.remove();
+            this.explored.add(node.state);
+            this.searchable.expandNode(node).forEach((childNode) => {
+                this.searchChildNode(childNode);
+            });
+        }
+    }
+
     search() {
         this.startTime = performance.now();
 
-        this.frontier.add(new SearchNode(this.searchable.initialState));
+        let node = new SearchNode(this.searchable.initialState);
         this.nodesUsed++;
 
-        this.explored.add(this.searchable.initialState);
-
-        while (this.frontier.length > 0) {
-            let leafNode = this.frontier.remove();
-            if (this.searchable.isGoal(leafNode.state)) {
-                this.buildSolution(leafNode);
-                break;
-            } else {
-                this.searchable.expandNode(leafNode).forEach((node) => {
-                    if (!this.explored.has(node.state)) {
-                        this.frontier.add(node);
-                        this.nodesUsed++;
-                        this.explored.add(node.state);
-                    }
-                });
-            }
+        if (this.searchable.isGoal(node.state)) {
+            this.buildSolution(node);
+        } else {
+            this.frontier.add(node);
+            this.searchFrontier();
         }
 
         this.endTime = performance.now();

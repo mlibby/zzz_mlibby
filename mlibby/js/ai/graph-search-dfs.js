@@ -1,9 +1,10 @@
-﻿import { GraphSearch } from './graph-search.js';
-import { SearchNode } from './search-node.js';
-import { LifoQueue } from './lifo-queue.js';
+﻿//import { GraphSearch } from './graph-search.js';
+//import { SearchNode } from './search-node.js';
+//import { LifoFrontier } from './lifo-Frontier.js';
 
-export class DepthFirstSearch extends GraphSearch {
+//export
+class DepthFirstSearch extends GraphSearch {
     constructor(searchable) {
-        super(searchable, new LifoQueue());
+        super(searchable, new LifoFrontier());
     }
 }
