@@ -38,7 +38,6 @@ namespace mlibby
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                 "~/Content/normalize.css",
                 "~/Content/bootstrap.css",
-                "~/Content/bootstrap-theme.css",
                 "~/css/site.css",
                 "~/css/mlibby-icons.css",
                 "~/css/befunge.css",

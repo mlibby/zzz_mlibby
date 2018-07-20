@@ -17,4 +17,7 @@ figcaption {
 
 .about-icon {
     margin-right: 10px;
+    font-size: 1.5rem;
+    vertical-align: top;
+    width: 2rem;
 }

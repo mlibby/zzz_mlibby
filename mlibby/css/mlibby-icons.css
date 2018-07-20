@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'mlibby-icons';
   src:
-    url('fonts/mlibby-icons.ttf?qrm6i') format('truetype'),
-    url('fonts/mlibby-icons.woff?qrm6i') format('woff'),
-    url('fonts/mlibby-icons.svg?qrm6i#mlibby-icons') format('svg');
+    url('/css/fonts/mlibby-icons.ttf?qrm6i') format('truetype'),
+    url('/css/fonts/mlibby-icons.woff?qrm6i') format('woff'),
+    url('/css/fonts/mlibby-icons.svg?qrm6i#mlibby-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
