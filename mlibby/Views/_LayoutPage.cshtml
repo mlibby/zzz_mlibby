@@ -27,9 +27,9 @@
             </button>
             <div id="navbarContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="/Home/About/">About Me</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Code/">My Code</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/AI/">AI</a></li>
+                    <li class="nav-item @(ViewBag.ActiveTab == "About" ? "active" : "")"><a class="nav-link" href="/Home/About/">About</a></li>
+                    <li class="nav-item @(ViewBag.ActiveTab == "Code" ? "active" : "")"><a class="nav-link" href="/Code/">Code</a></li>
+                    <li class="nav-item @(ViewBag.ActiveTab == "AI" ? "active" : "")"><a class="nav-link" href="/AI/">AI</a></li>
                 </ul>
             </div>
         </div>

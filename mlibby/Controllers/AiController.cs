@@ -8,6 +8,11 @@ namespace mlibby.Controllers
 {
     public class AiController : Controller
     {
+        public AiController()
+        {
+            ViewBag.ActiveTab = "AI";
+        }
+
         public ActionResult Index()
         {
             return View();

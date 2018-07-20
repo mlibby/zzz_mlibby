@@ -8,6 +8,11 @@ namespace mlibby.Controllers
 {
     public class CodeController : Controller
     {
+        public CodeController()
+        {
+            ViewBag.ActiveTab = "Code";
+        }
+
         // GET: Code
         public ActionResult Index()
         {
