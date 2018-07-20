@@ -13,14 +13,14 @@
         <div class="form-inline">
             <div class="input-group">
                 <label class="btn btn-default input-group-addon" title="Load File">
-                    <span class="glyphicon glyphicon-folder-open "></span>
+                    <span class="icon-upload"></span>
                     <span class="sr-only">Open File</span>
                     <input id="befunge-file" type="file" style="display: none;">
                 </label>
                 <input id="file-name" type="text" class="form-control" />
             </div>
             <button id="save-file" class="btn btn-default" title="Save File" disabled="disabled">
-                <span class="glyphicon glyphicon-hdd"></span>
+                <span class="icon-hdd-o"></span>
                 <span class="sr-only">Save File</span>
             </button>
         </div>
@@ -29,15 +29,15 @@
     <section class="col-xs-6 col-sm-3">
         <h2>Controls</h2>
         <button id="befunge-reset" class="btn btn-primary" title="Reset Befunge">
-            <span class="glyphicon glyphicon-refresh"></span>
+            <span class="icon-refresh"></span>
             <span class="sr-only">Reset Befunge</span>
         </button>
         <button id="befunge-run" class="btn btn-primary" title="Run">
-            <span class="glyphicon glyphicon-play"></span>
+            <span class="icon-play"></span>
             <span class="sr-only">Run</span>
         </button>
         <button id="befunge-pause" class="btn btn-primary hidden" title="Pause">
-            <span class="glyphicon glyphicon-pause"></span>
+            <span class="icon-pause"></span>
             <span class="sr-only">Pause</span>
         </button>
 
@@ -45,11 +45,11 @@
     <section class="col-xs-6 col-sm-3">
         <h2>Speed</h2>
         <button id="befunge-slower" class="btn btn-info" title="Slower">
-            <span class="glyphicon glyphicon-chevron-down"></span>
+            <span class="icon-chevron-down"></span>
             <span class="sr-only">Slower</span>
         </button>
         <button id="befunge-faster" class="btn btn-info" title="Faster">
-            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="icon-chevron-up"></span>
             <span class="sr-only">Faster</span>
         </button>
     </section>
@@ -58,7 +58,7 @@
     <section class="col-sm-6">
         <div class="form-inline">
             <h2 class="h-horizontal">Console</h2>
-            <button id="befunge-clear" class="btn btn-danger by-header" title="Clear Console"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Clear Console</span></button>
+            <button id="befunge-clear" class="btn btn-danger by-header" title="Clear Console"><span class="icon-remove" aria-hidden="true"></span><span class="sr-only">Clear Console</span></button>
         </div>
         <textarea id="befunge-console" class="form-control" readonly="readonly"></textarea>
     </section>
@@ -72,11 +72,6 @@
             </select>
         </div>
         <textarea id="befunge-stack" class="form-control" readonly="readonly"></textarea>
-    </section>
-</div>
-<div class="row">
-    <section class="col-sm-12">
-        <textarea cols="80" rows="25" class="hidden"></textarea>
     </section>
 </div>
 <div class="row">

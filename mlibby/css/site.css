@@ -1,8 +1,4 @@
-﻿.navbar {
-    margin-bottom: 0;
-}
-
-main.container {
+﻿main.container {
     margin-top: 60px;
 }
 
@@ -17,4 +13,8 @@ h2 {
 
 figcaption {
     text-align: center;
+}
+
+.about-icon {
+    margin-right: 10px;
 }

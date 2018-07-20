@@ -1,11 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Welcome";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 <article class="row">
     <div class="col-sm-12">
-        <h2>Welcome</h2>
         <p>
             I am Michael C. Libby and this is my site. I am a software developer, web developer, and accessibility enthusiast. My friends call me &ldquo;Libby.&rdquo;
         </p>
@@ -14,6 +12,7 @@
         <ul>
             <li>@Html.ActionLink("About Me", "About")</li>
             <li>@Html.ActionLink("My Code", "Index", "Code")</li>
+            <li>@Html.ActionLink("AI Exercises", "Index", "AI")</li>
         </ul>
     </div>
 </article>

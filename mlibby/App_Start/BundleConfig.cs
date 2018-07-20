@@ -40,9 +40,10 @@ namespace mlibby
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-theme.css",
                 "~/css/site.css",
-                "~/css/main.css",
+                "~/css/mlibby-icons.css",
                 "~/css/befunge.css",
-                "~/css/psytzee.css"
+                "~/css/psytzee.css",
+                "~/css/turing.css"
                 ));
         }
     }

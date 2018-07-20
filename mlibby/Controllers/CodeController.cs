@@ -24,6 +24,16 @@ namespace mlibby.Controllers
             return View();
         }
 
+        public ActionResult TumbleFunge()
+        {
+            return View();
+        }
+
+        public ActionResult Turing()
+        {
+            return View();
+        }
+
         public ActionResult Psytzee()
         {
             return View();

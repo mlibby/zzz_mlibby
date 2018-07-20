@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Classic Turing Machine";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div class="row">
+    <section class="col-12">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default" id="panel1">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        <a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
+                            About This
+                        </a>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <p>
+                            In 1936, <a href="https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing</a> described a machine that has since become known as the "<a href="https://en.wikipedia.org/wiki/Turing_machine">Turing Machine</a>" in his paper "<a href="https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/plms/s2-42.1.230">On Computable Numbers, with an Application to the Entscheidungsproblem</a>". In looking at the existing Turing Machine emulators available online, I found many that were very helpful as aids to understanding the general concepts... but none that really had the look and feel of the machine described in Turing's paper. This is an attempt to remedy that &mdash; to create a <i>classic</i> Turing Machine emulator, one that allows you to run the actual m-configurations from Turing's paper.
+                        </p>
+                        <p>
+                            Turing's example m-configurations in his paper used a variety of symbols that aren't exactly standard on today's computers, but they are supported by this emulator. But because I found Charles Petzold's book "The Annotated Turing"...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="row">
+    <section class="col-12">
+        <h2 class="h-horizontal">Tape</h2>
+        <div id="turing-tape"></div>
+    </section>
+</div>
+<div class="row">
+    <div class="col-md-6 order-md-2">
+        <div class="row">
+            <section class="col-12">
+                <h2 class="h-horizontal">File</h2>
+                <div class="form-inline">
+                    <div class="input-group">
+                        <div class="input-group-prepend" title="Load File">
+                            <button class="input-group-text">
+                                <span class="icon-upload"></span>
+                                <span class="sr-only">Open File</span>
+                            </button>
+                        </div>
+                        <input id="file-name" type="text" class="form-control" />
+                    </div>
+                    <button id="save-file" class="btn btn-default" title="Save File" disabled="disabled">
+                        <span class="icon-hdd-o"></span>
+                        <span class="sr-only">Save File</span>
+                    </button>
+                    <select id="turing-stock-files" class="form-control">
+                        <option selected="selected" value="0">Choose a demo program...</option>
+                    </select>
+                </div>
+            </section>
+            <section class="col-6 col-sm-6">
+                <h2>Controls</h2>
+                <button id="turing-reset" class="btn btn-primary" title="Reset Machine">
+                    <span class="icon-refresh"></span>
+                    <span class="sr-only">Reset Machine</span>
+                </button>
+                <button id="turing-run" class="btn btn-primary" title="Begin">
+                    <span class="icon-play"></span>
+                    <span class="sr-only">Begin Machine</span>
+                </button>
+                <button id="turing-pause" class="btn btn-primary hidden" title="Pause">
+                    <span class="icon-pause"></span>
+                    <span class="sr-only">Pause Machine</span>
+                </button>
+            </section>
+            <section class="col-6 col-sm-6">
+                <h2>Speed</h2>
+                <button id="turing-slower" class="btn btn-info" title="Slower">
+                    <span class="icon-chevron-down"></span>
+                    <span class="sr-only">Slower</span>
+                </button>
+                <button id="turing-faster" class="btn btn-info" title="Faster">
+                    <span class="icon-chevron-up"></span>
+                    <span class="sr-only">Faster</span>
+                </button>
+            </section>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 order-md-1">
+        <section>
+            <h2 class="h-horizontal">Configuration</h2>
+            <textarea id="turing-console" class="form-control" rows="16"></textarea>
+            <button class="btn btn-default turing-key">&blank;</button>
+            <button class="btn btn-default turing-key">&#601;</button>
+            <button class="btn btn-default turing-key">&xscr;</button>
+            <br /><br />
+            <button class="btn btn-default turing-key">&afr;</button>
+            <button class="btn btn-default turing-key">&bfr;</button>
+            <button class="btn btn-default turing-key">&cfr;</button>
+            <button class="btn btn-default turing-key">&dfr;</button>
+            <button class="btn btn-default turing-key">&efr;</button>
+            <button class="btn btn-default turing-key">&ffr;</button>
+            <button class="btn btn-default turing-key">&gfr;</button>
+            <button class="btn btn-default turing-key">&hfr;</button>
+            <button class="btn btn-default turing-key">&ifr;</button>
+            <button class="btn btn-default turing-key">&jfr;</button>
+            <button class="btn btn-default turing-key">&kfr;</button>
+            <button class="btn btn-default turing-key">&lfr;</button>
+            <button class="btn btn-default turing-key">&mfr;</button>
+            <button class="btn btn-default turing-key">&nfr;</button>
+            <button class="btn btn-default turing-key">&ofr;</button>
+            <button class="btn btn-default turing-key">&pfr;</button>
+            <button class="btn btn-default turing-key">&qfr;</button>
+            <button class="btn btn-default turing-key">&rfr;</button>
+            <button class="btn btn-default turing-key">&sfr;</button>
+            <button class="btn btn-default turing-key">&tfr;</button>
+            <button class="btn btn-default turing-key">&ufr;</button>
+            <button class="btn btn-default turing-key">&vfr;</button>
+            <button class="btn btn-default turing-key">&wfr;</button>
+            <button class="btn btn-default turing-key">&xfr;</button>
+            <button class="btn btn-default turing-key">&yfr;</button>
+            <button class="btn btn-default turing-key">&zfr;</button>
+        </section>
+    </div>
+</div>
+<script src="~/js/turing.js"></script>

@@ -18,26 +18,24 @@
     <link rel="canonical" href="http://mlibby.com/">
 </head>
 
-<body class="">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle btn btn-default" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </button>
-                <a class="navbar-brand" href="/">mlibby.com</a>
-                <h1>@ViewBag.Title</h1>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/Home/About/">About Me</a></li>
-                    <li><a href="/Code/">My Code</a></li>
-                    <li><a href="/AI/">AI</a></li>
+            <a class="navbar-brand" href="/">mlibby.com</a>
+            <button type="button" class="navbar-toggler btn btn-outline-dark" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="/Home/About/">About Me</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Code/">My Code</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/AI/">AI</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <main class="container">
+        <h1>@ViewBag.Title</h1>
         @RenderBody()
     </main>
 </body>
