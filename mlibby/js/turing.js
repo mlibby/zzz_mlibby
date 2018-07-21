@@ -1,5 +1,8 @@
 ﻿(function () {
-    const stockConfigurations = {
+    let $fileName,
+        $stockSelect;
+
+    let demoConfigs = {
         'Turing01-ZeroOne': [
             '𝔟 None P0,R 𝔠',
             '𝔠 None R 𝔢',
@@ -25,32 +28,32 @@
         ]
     };
 
-    var TuringMachine = class {
+    class TuringMachine {
         constructor() {
-            var that = this;
-        }
-
-        initStockMenu() {
-            var $select = $("#turing-stock-files");
-            for (var program in stockConfigurations) {
-                $select.append($("<option value='" + program + "'>" + program + "</option>"));
-            }
-            var that = this;
-            $select.change(function (e) {
-                var fileName = $select.val();
-                var dummyResponse = {
-                    target: {
-                        result: stockConfigurations[fileName]
-                    }
-                };
-                //that.loadBefunge(dummyResponse);
-                $("#file-name").val(fileName);
-            });
         }
     }
 
+    function demoConfigSelected(e) {
+        let config = $selectDemo.val();
+        $("#file-name").val(config);
+
+        $("#turing-config-raw").text(demoConfigs[config].join("\n"));
+    }
+
+    function initDemoConfigMenu() {
+        for (let config in demoConfigs) {
+            $selectDemo.append($("<option value='" + config + "'>" + config + "</option>"));
+        }
+
+        var that = this;
+        $selectDemo.change(demoConfigSelected);
+    }
+
     $(document).ready(function () {
-        var tm = new TuringMachine;
-        tm.initStockMenu();
+        $fileName = $("#file-name");
+        $fileName.val('');
+
+        $selectDemo = $("#turing-demo-config");
+        initDemoConfigMenu();
     });
 })();
