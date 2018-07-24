@@ -4,33 +4,29 @@
 }
 <div class="row">
     <section class="col-12">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default" id="panel1">
-                <div class="panel-heading">
-                    <h2 class="panel-title">
-                        <a data-toggle="collapse" data-target="#collapseOne" href="#collapseOne">
-                            About This
-                        </a>
-                    </h2>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <p>
-                            In 1936, <a href="https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing</a> described a machine that has since become known as the "<a href="https://en.wikipedia.org/wiki/Turing_machine">Turing Machine</a>" in his paper "<a href="https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/plms/s2-42.1.230">On Computable Numbers, with an Application to the Entscheidungsproblem</a>". In looking at the existing Turing Machine emulators available online, I found many that were very helpful as aids to understanding the general concepts... but none that really had the look and feel of the machine described in Turing's paper. This is an attempt to remedy that &mdash; to create a <i>classic</i> Turing Machine emulator, one that allows you to run the actual m-configurations from Turing's paper.
-                        </p>
-                        <p>
-                            Turing's example m-configurations in his paper used a variety of symbols that aren't exactly standard on today's computers, but they are supported by this emulator. But because I found Charles Petzold's book "The Annotated Turing"...
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div class="h-horizontal">
+            <h2 class="panel-title">
+                About This
+            </h2>
+            <button class="btn btn-default" type="button" data-toggle="collapse" data-target=".about-collapse" aria-expanded="true" aria-controls="aboutPanel">
+                <span class="collapse-button collapse show"></span>
+            </button>
+        </div>
+        <div id="aboutPanel" class="about-collapse collapse show">
+            <p>
+                In 1936, <a href="https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing</a> described a machine that has since become known as the "<a href="https://en.wikipedia.org/wiki/Turing_machine">Turing Machine</a>" in his paper "<a href="https://londmathsoc.onlinelibrary.wiley.com/doi/abs/10.1112/plms/s2-42.1.230">On Computable Numbers, with an Application to the Entscheidungsproblem</a>". In looking at the existing Turing Machine emulators available online, I found many that were very helpful as aids to understanding the general concepts... but none that really had the look and feel of the machine described in Turing's paper. This is an attempt to remedy that &mdash; to create a <i>classic</i> Turing Machine emulator, one that allows you to run the actual m-configurations from Turing's paper.
+            </p>
+            <p>
+                Turing's example m-configurations in his paper used a variety of symbols that aren't exactly standard on today's computers, but they are supported by this emulator. But because I found Charles Petzold's book "The Annotated Turing"...
+            </p>
         </div>
     </section>
 </div>
 <div class="row">
     <section class="col-12">
         <h2 class="h-horizontal">Tape</h2>
-        <div id="turing-tape"></div>
+        <div id="turing-tape">
+        </div>
     </section>
 </div>
 <div class="row">
@@ -89,36 +85,6 @@
         <section>
             <h2 class="h-horizontal">Configuration</h2>
             <textarea id="turing-config-raw" class="form-control raw-code" rows="16"></textarea>
-            <button class="btn btn-default turing-key">&blank;</button>
-            <button class="btn btn-default turing-key">&#601;</button>
-            <button class="btn btn-default turing-key">&xscr;</button>
-            <br /><br />
-            <button class="btn btn-default turing-key">&afr;</button>
-            <button class="btn btn-default turing-key">&bfr;</button>
-            <button class="btn btn-default turing-key">&cfr;</button>
-            <button class="btn btn-default turing-key">&dfr;</button>
-            <button class="btn btn-default turing-key">&efr;</button>
-            <button class="btn btn-default turing-key">&ffr;</button>
-            <button class="btn btn-default turing-key">&gfr;</button>
-            <button class="btn btn-default turing-key">&hfr;</button>
-            <button class="btn btn-default turing-key">&ifr;</button>
-            <button class="btn btn-default turing-key">&jfr;</button>
-            <button class="btn btn-default turing-key">&kfr;</button>
-            <button class="btn btn-default turing-key">&lfr;</button>
-            <button class="btn btn-default turing-key">&mfr;</button>
-            <button class="btn btn-default turing-key">&nfr;</button>
-            <button class="btn btn-default turing-key">&ofr;</button>
-            <button class="btn btn-default turing-key">&pfr;</button>
-            <button class="btn btn-default turing-key">&qfr;</button>
-            <button class="btn btn-default turing-key">&rfr;</button>
-            <button class="btn btn-default turing-key">&sfr;</button>
-            <button class="btn btn-default turing-key">&tfr;</button>
-            <button class="btn btn-default turing-key">&ufr;</button>
-            <button class="btn btn-default turing-key">&vfr;</button>
-            <button class="btn btn-default turing-key">&wfr;</button>
-            <button class="btn btn-default turing-key">&xfr;</button>
-            <button class="btn btn-default turing-key">&yfr;</button>
-            <button class="btn btn-default turing-key">&zfr;</button>
         </section>
     </div>
 </div>

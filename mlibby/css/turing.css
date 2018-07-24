@@ -8,16 +8,31 @@
 }
 
 .raw-code {
-    font-family: monospace;
+    font-family: 'firamono', monospace;
     font-size: 1.25rem;
 }
 
-.panel-heading a:after {
-    content: "-";
-    float: right;
-    color: grey;
+#turing-tape {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: auto;
+    width: auto;
+    white-space: nowrap;
 }
 
-.panel-heading a.collapsed:after {
-    content: "+";
+.turing-tape-cell {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid grey;
+    font-family: 'firamono', monospace;
+    font-size: 1.5rem;
+    margin: 0 2px 2px 2px;
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+.turing-tape-cell.active-cell {
+    border-color: black;
+    background-color: white;
 }

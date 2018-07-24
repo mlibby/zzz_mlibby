@@ -1,35 +1,72 @@
 ﻿(function () {
     let $fileName,
-        $stockSelect;
+        $stockSelect,
+        $tape;
 
     let demoConfigs = {
-        'Turing01-ZeroOne': [
-            '𝔟 None P0,R 𝔠',
-            '𝔠 None R 𝔢',
-            '𝔢 None P1,R 𝔨',
-            '𝔨 None R 𝔟'
+        "Turing01-ZeroOne": [
+            "b  None  P0,R  c",
+            "c  None  R     e",
+            "e  None  P1,R  k",
+            "k  None  R     b"
         ],
-        'Turing02-ZeroOneConcise': [
-            '𝔟 { None P0 𝔟',
-            '  { 0 R,R,P1 𝔟',
-            '  { 1 R,R,P0 𝔟'
+        "Turing02-ZeroOneConcise": [
+            "b { None  P0      b",
+            "  { 0     R,R,P1  b",
+            "  { 1     R,R,P0  b"
         ],
-        'Turing03-MoreOnes': [
-            '𝔟 None Pə,R,Pə,R,P0,R,R,P0,L,L 𝔬',
-            '𝔬 { 1 R,Px,L,L,L 𝔬',
-            '  { 0 R,Px,L,L,L 𝔮',
-            '𝔮 { Any R,R 𝔮',
-            '  { None P1,L 𝔭',
-            '𝔭 { x E,R 𝔮',
-            '  { ə R 𝔣',
-            '  { None L,L 𝔭',
-            '𝔣 { Any R,R 𝔣',
-            '  { None P0,L,L 𝔬'
+        "Turing03-MoreOnes": [
+            "b  None  P@,R,P@,R,P0,R,R,P0,L,L  o", "",
+            "o { 1  R,Px,L,L,L  o",
+            "  { 0  R,Px,L,L,L  q", "",
+            "q { Any   R,R   q",
+            "  { None  P1,L  p", "",
+            "p { x      E,R  q",
+            "  { @      R    k",
+            "  { None   L,L  p", "",
+            "k { Any    R,R     k",
+            "  { None   P0,L,L  o"
         ]
     };
 
     class TuringMachine {
-        constructor() {
+        constructor($tapeDisplay) {
+            this.tapeDisplay = $tapeDisplay;
+            this.tape = new Array(64);
+            this.currentCell = 0;
+            this.maxCell = 0;
+        }
+
+        displayTape() {
+            for (let x = 0; x < this.tape.length; x++) {
+                let cellID = "turing-cell-" + x;
+                let $cell = this.tapeDisplay.find("#" + cellID);
+                if ($cell.length === 0) {
+                    $cell = $("<div class='turing-tape-cell' id='" + cellID + "'></div>");
+                    this.tapeDisplay.append($cell);
+                }
+
+                let cellValue = this.tape[x];
+                if (cellValue == "") {
+                    $cell.html("&nbsp;");
+                } else {
+                    $cell.text(cellValue);
+                }
+
+                if (this.currentCell === x) {
+                    $cell.addClass('active-cell');
+                } else {
+                    $cell.removeClass('active-cell');
+                }
+
+                if (this.currentCell > this.maxCell) {
+                    maxCell = this.currentCell;
+                }
+
+                if (this.maxCell + 16 > this.tape.length) {
+                    this.tape = this.tape.concat(new Array(16));
+                }
+            }
         }
     }
 
@@ -51,9 +88,12 @@
 
     $(document).ready(function () {
         $fileName = $("#file-name");
-        $fileName.val('');
+        $fileName.val("");
 
         $selectDemo = $("#turing-demo-config");
         initDemoConfigMenu();
+
+        let tm = new TuringMachine($("#turing-tape"));
+        tm.displayTape();
     });
 })();

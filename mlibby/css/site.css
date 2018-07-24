@@ -1,10 +1,35 @@
-﻿main.container {
+﻿body {
+    font-family: 'arsenal', sans-serif;
+    font-stretch: semi-expanded;
+}
+
+main.container {
     margin-top: 60px;
 }
 
 h2 {
     margin-top: 10px;
 }
+
+.h-horizontal h2 {
+    display: inline-block;
+}
+
+.h-horizontal button {
+    vertical-align: text-top;
+    padding: 0.1rem 0.3rem 0;
+    margin-left: 1rem;
+    margin-top: -0.66rem;
+}
+
+    .h-horizontal button .collapse-button::after {
+        font-family: 'mlibby-icons' !important;
+        content: '\f068';
+    }
+
+    .h-horizontal button.collapsed .collapse-button::after {
+        content: '\f067';
+    }
 
 .smallish {
     max-width: 90%;

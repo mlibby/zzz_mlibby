@@ -133,6 +133,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="css\ai.css" />
+    <Content Include="css\fonts.css" />
+    <Content Include="css\fonts\arsenal-regular-webfont.svg" />
+    <Content Include="css\fonts\firamono-regular-webfont.svg" />
     <Content Include="css\fonts\mlibby-icons.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -178,6 +181,18 @@
     <Content Include="css\fonts\mlibby-icons.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="css\fonts\arsenal-regular-webfont.svg.b64" />
+    <Content Include="css\fonts\arsenal-regular-webfont.ttf" />
+    <Content Include="css\fonts\arsenal-regular-webfont.ttf.b64" />
+    <Content Include="css\fonts\arsenal-regular-webfont.woff" />
+    <Content Include="css\fonts\arsenal-regular-webfont.woff.b64" />
+    <Content Include="css\fonts\arsenal-regular-webfont.woff2" />
+    <Content Include="css\fonts\arsenal-regular-webfont.woff2.b64" />
+    <Content Include="css\fonts\firamono-regular-webfont.ttf" />
+    <Content Include="css\fonts\firamono-regular-webfont.woff" />
+    <Content Include="css\fonts\firamono-regular-webfont.woff2" />
+    <Content Include="css\fonts\firamono-regular-webfont.woff2.b64" />
+    <Content Include="css\fonts\mlibby-icons.woff.b64" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\web server.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
