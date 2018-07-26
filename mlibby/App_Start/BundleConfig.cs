@@ -41,6 +41,7 @@ namespace mlibby
                 "~/css/site.css",
                 "~/css/mlibby-icons.css",
                 "~/css/befunge.css",
+                "~/css/oregon.css",
                 "~/css/psytzee.css",
                 "~/css/turing.css"
                 ));

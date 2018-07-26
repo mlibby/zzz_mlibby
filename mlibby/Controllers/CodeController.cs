@@ -43,5 +43,10 @@ namespace mlibby.Controllers
         {
             return View();
         }
+
+        public ActionResult Oregon()
+        {
+            return View();
+        }
     }
 }

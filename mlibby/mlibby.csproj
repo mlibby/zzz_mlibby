@@ -140,6 +140,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="css\mlibby-icons.css" />
+    <Content Include="css\oregon.css" />
     <Content Include="css\turing.css" />
     <Content Include="img\romania-distances-small.png" />
     <Content Include="img\romania-distances.png" />
@@ -164,6 +165,7 @@
     <Content Include="js\ai\search.js" />
     <Content Include="js\ai\solve-map.js" />
     <Content Include="js\ai\tree-search.js" />
+    <Content Include="js\oregon.js" />
     <Content Include="js\turing.js" />
     <Content Include="js\tumble.js" />
     <Content Include="js\befunge.js" />
@@ -268,6 +270,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Code\Oregon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Classic Oregon Trails";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div class="row">
+    <section class="col-12">
+        <div class="h-horizontal">
+            <h2 class="panel-title">
+                About This
+            </h2>
+            <button class="btn btn-default" type="button" data-toggle="collapse" data-target=".about-collapse" aria-expanded="true" aria-controls="aboutPanel">
+                <span class="collapse-button collapse show"></span>
+            </button>
+        </div>
+        <div id="aboutPanel" class="about-collapse collapse show">
+            <p>
+                Most of us have heard of the classic educational game "<a href="https://en.wikipedia.org/wiki/The_Oregon_Trail_(video_game)">Oregon Trail</a>". Many of us even have fond memories of playing the game on a computer in school. Perhaps an Apple II or a PC or a Macintosh. A few of us first encountered this game in a text-only form, running on a timeshare computer. I am one of <em>those</em> people. But in looking for a way to play the game in that classic mode online, not much is out there. This is an attempt to fix that. This is a pure web <em>port</em> of the 1978 version of the game as published in <a href="https://deserthat.wordpress.com/2010/11/07/oregon-trail-ver-3-basic-3-1-1978/">Creative Computing</a>. When I was in grade school, I did once print out the source code for the game so I could figure out how to cheat by changing the game, but alas, that printout was lost during the intervening decades.
+            </p>
+            <p>
+                My goal here is not to emulate the original hardware/software and allow one to run the original BASIC code, but rather to implement a game that has a similar look and feel as playing it on a <a href="https://en.wikipedia.org/wiki/Teletype_Model_33">teletype terminal</a>. To that end, the main game logic is written in modern Javascript. Where the original teletype machines had really long rolls of continuous paper that were typed on and the user could type their input directly on that and hit Enter to submit it, this one has a scrolling window for the output and a text input box when input is called for. I hope you enjoy my version of this ur-classic game!
+            </p>
+        </div>
+    </section>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h2 class="h-horizontal">The Paper Roll</h2>
+        <textarea id="oregon-paper-roll" class="form-control oregon-tt" disabled="disabled" rows="24"></textarea>
+        <form class="mt-3">
+            <div class="form-row">
+                <div class="col-xs-8 col-md-10">
+                    <input id="oregon-input" disabled="disabled" type="text" class="form-control oregon-tt" />
+                </div>
+                <div class="col-xs-4 col-md-2">
+                    <button id="oregon-enter" class="btn btn-default oregon-tt" disabled="disabled">Enter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/js/oregon.js"></script>
