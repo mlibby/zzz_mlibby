@@ -1,4 +1,10 @@
 ﻿(function () {
+
+    /* Returns a pseudo-random integer from 0 to max */
+    Math.randomInt = function (max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
     class Teletype {
         constructor($output, $input, $enter) {
             this.output = $output;
@@ -7,11 +13,6 @@
             this.buffer = [];
             this.printing = false;
             this.awaitingInput = false;
-
-            this.enter.click(e => {
-                e.preventDefault();
-                this.awaitingInput = false;
-            });
         }
 
         sleep(time) {
@@ -28,7 +29,7 @@
                         this.output.scrollTop(this.output[0].scrollHeight);
                         this.printing = false;
                         this.printBuffer();
-                    }, 10);
+                    }, 5);
                 } else {
                     this.printing = false;
                 }
@@ -49,25 +50,21 @@
             }
         }
 
-        awaitInput(callback) {
-            setTimeout(() => {
-                if (!this.printing && !this.awaitingInput) {
-                    callback(this.input.val().trim());
-                } else {
-                    this.awaitInput(callback);
-                }
-            }, 10);
-        }
-
         getInput(callback) {
+            if (this.printing) {
+                setTimeout(() => this.getInput(callback), 100);
+                return;
+            }
             this.input.removeAttr('disabled');
             this.enter.removeAttr('disabled');
 
             this.input.val("");
             this.input.focus();
 
-            this.awaitingInput = true;
-            this.awaitInput(result => {
+            this.enter.off();
+            this.enter.click(e => {
+                e.preventDefault();
+                let result = this.input.val().trim();
                 this.input.attr('disabled', 'disabled');
                 this.enter.attr('disabled', 'disabled');
                 this.input.val("");
@@ -107,7 +104,7 @@
 
         constructor(teletype) {
             this.tt = teletype;
-            this.fortOptionFlag = -1;
+            this.fortOptionFlag = 1;
             this.injuryFlag = 0;
             this.illnessFlag = 0;
             this.southPassFlag = 0;
@@ -271,11 +268,11 @@
                 this.askOxenSpending();
             } else {
                 this.tt.print("AFTER ALL YOUR PURCHASES, YOU NOW HAVE " + this.money + " DOLLARS LEFT");
-                this.doTurn();
+                this.startTurn();
             }
         }
 
-        doTurn() {
+        startTurn() {
             if (this.totalMileage >= 2040) {
                 this.lastTurn();
             } else {
@@ -285,15 +282,6 @@
                 this.printMileage();
                 this.printItemSummary();
                 this.getNextAction();
-                this.eat();
-                this.updateMileage();
-                this.ridersAttack();
-                this.doEvents();
-                if (this.totalMileage > 950) {
-                    this.doMountains();
-                }
-                this.turnNumber++;
-                setTimeout(() => this.doTurn(), 1);
             }
         }
 
@@ -341,63 +329,90 @@
             this.tt.print(
                 this.food.toString().padEnd(6, ' ') +
                 this.ammo.toString().padEnd(9, ' ') +
-                this.clothing.toString().padEnd(11, ' ') +
-                this.supplies.toString().padEnd(13, ' ') +
+                this.clothing.toString().padEnd(10, ' ') +
+                this.supplies.toString().padEnd(14, ' ') +
                 this.money.toString()
             );
         }
 
         getNextAction() {
-            let action = 2;
+            this.fortOptionFlag *= -1;
             if (this.fortOptionFlag === -1) {
                 this.tt.print("DO YOU WANT TO (1) HUNT, OR (2) CONTINUE?");
-                this.tt.getInput(result => action = result + 1);
+                this.tt.getInput(result => {
+                    let action = Number(result) + 1;
+                    this.doAction(action)
+                });
             } else {
                 this.tt.print([
                     "DO YOU WANT TO (1) STOP AT THE NEXT FORT, (2) HUNT, ",
                     "OR (3) CONTINUE?"
                 ]);
-                this.tt.getInput(result => action = result);
+                this.tt.getInput(result => {
+                    let action = Number(result);
+                    this.doAction(action)
+                });
             }
+        }
 
+        doAction(action) {
             if (action === 1) {
                 this.stopAtFort();
-                return;
-            }
-
-            if (action === 2) {
+            } else if (action === 2) {
                 if (this.ammo < 40) {
                     this.tt.print("TOUGH---YOU NEED MORE BULLETS TO GO HUNTING");
                     this.getNextAction();
                 } else {
                     this.hunt();
                 }
-                return;
+            } else {
+                this.eat();
             }
         }
 
         stopAtFort() {
+            this.tt.print("stop at fort");
+            this.eat();
         }
 
         hunt() {
+            this.tt.print("hunt");
+            this.eat();
         }
 
         eat() {
+            this.tt.print("eat");
+            this.updateMileage();
         }
 
         updateMileage() {
             this.totalMileage += 200;
             this.totalMileage += (this.oxen - 220) / 5;
-            this.totalMileage += Math.random(10) + 1;
+            this.totalMileage += Math.randomInt(9) + 1;
+            this.ridersAttack();
         }
 
         ridersAttack() {
+            this.tt.print("riders attack");
+            this.doEvents();
         }
 
         doEvents() {
+            this.tt.print("do events");
+            this.doMountains();
         }
 
         doMountains() {
+            this.tt.print("do mountains");
+            //    if (this.totalMileage > 950) {
+            //        this.doMountains();
+            //    }
+            this.finishTurn();
+        }
+
+        finishTurn() {
+            this.turnNumber++;
+            setTimeout(() => this.startTurn(), 1);
         }
 
         lastTurn() {
