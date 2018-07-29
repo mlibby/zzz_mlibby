@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Classic Oregon Trails";
+    ViewBag.Title = "Classic Oregon Trail";
     Layout = "~/Views/_LayoutPage.cshtml";
 }
 <div class="row">
@@ -19,12 +19,16 @@
             <p>
                 My goal here is not to emulate the original hardware/software and allow one to run the original BASIC code, but rather to implement a game that has a similar look and feel as playing it on a <a href="https://en.wikipedia.org/wiki/Teletype_Model_33">teletype terminal</a>. To that end, the main game logic is written in modern Javascript. Where the original teletype machines had really long rolls of continuous paper that were typed on and the user could type their input directly on that and hit Enter to submit it, this one has a scrolling window for the output and a text input box when input is called for. I hope you enjoy my version of this ur-classic game!
             </p>
+            <p>Fun fact: in this original version of the game, you could not die of dysentery. That famous demise was added in later versions of the game.</p>
         </div>
     </section>
 </div>
 <div class="row">
     <div class="col-12">
-        <h2 class="h-horizontal">The Paper Roll</h2>
+        <div class="h-horizontal">
+            <h2 class="h-horizontal">Teletype Emulator</h2>
+            <button id="startButton" class="btn btn-primary">Start Game</button>
+        </div>
         <textarea id="oregon-paper-roll" class="form-control oregon-tt" disabled="disabled" rows="24"></textarea>
         <form class="mt-3">
             <div class="form-row">
@@ -32,7 +36,7 @@
                     <input id="oregon-input" disabled="disabled" type="text" class="form-control oregon-tt" />
                 </div>
                 <div class="col-xs-4 col-md-2">
-                    <button id="oregon-enter" class="btn btn-default oregon-tt" disabled="disabled">Enter</button>
+                    <button id="oregon-enter" class="btn btn-default oregon-tt">Enter</button>
                 </div>
             </div>
         </form>

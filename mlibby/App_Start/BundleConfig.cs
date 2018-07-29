@@ -11,7 +11,8 @@ namespace mlibby
             bundles.Add(new ScriptBundle("~/bundles/libs").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/bootstrap.js",
-                "~/Scripts/underscore.js"
+                "~/Scripts/underscore.js",
+                "~/Scripts/moment.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/ai").Include(
