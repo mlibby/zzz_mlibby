@@ -116,49 +116,27 @@
 
         printInstructions() {
             let instructions = [
-                "THIS PROGRAM SIMULATES A TRIP OVER THE OREGON TRAIL FROM",
-                "INDEPENDENCE MISSOURI TO OREGON CITY, OREGON IN 1847.",
-                "YOUR FAMILY OF FIVE WILL COVER THE 2040 MILE OREGON TRAIL",
-                "IN 5-6 MONTHS --- IF YOU MAKE IT ALIVE.",
+                "THIS PROGRAM SIMULATES A TRIP OVER THE OREGON TRAIL FROM INDEPENDENCE MISSOURI TO OREGON CITY, OREGON IN 1847. YOUR FAMILY OF FIVE WILL COVER THE 2040 MILE OREGON TRAIL IN 5-6 MONTHS --- IF YOU MAKE IT ALIVE.",
                 "",
-                "YOU HAD SAVED $900 TO SPEND FOR THE TRIP, AND YOU'VE JUST",
-                "PAID $200 FOR A WAGON.",
+                "YOU HAD SAVED $900 TO SPEND FOR THE TRIP, AND YOU'VE JUST PAID $200 FOR A WAGON.",
                 "",
-                "YOU WILL NEED TO SPEND THE REST OF YOUR MONEY ON THE",
-                "FOLLOWING ITEMS:",
+                "YOU WILL NEED TO SPEND THE REST OF YOUR MONEY ON THE FOLLOWING ITEMS:",
                 "",
-                "     OXEN - YOU CAN SPEND $200-$300 ON YOUR TEAM",
-                "            THE MORE YOU SPEND, THE FASTER YOU'LL GO",
-                "            BECAUSE YOU'LL HAVE BETTER ANIMALS",
+                "OXEN - YOU CAN SPEND $200-$300 ON YOUR TEAM THE MORE YOU SPEND, THE FASTER YOU'LL GO BECAUSE YOU'LL HAVE BETTER ANIMALS",
                 "",
-                "     FOOD - THE MORE YOU HAVE, THE LESS CHANCE THERE",
-                "            IS OF GETTING SICK",
+                "FOOD - THE MORE YOU HAVE, THE LESS CHANCE THERE IS OF GETTING SICK",
                 "",
-                "     AMMUNITION - $1 BUYS A BELT OF 50 BULLETS",
-                "            YOU WILL NEED BULLETS FOR ATTACKS BY ANIMALS",
-                "            AND BANDITS, AND FOR HUNTING FOOD",
+                "AMMUNITION - $1 BUYS A BELT OF 50 BULLETS. YOU WILL NEED BULLETS FOR ATTACKS BY ANIMALS AND BANDITS, AND FOR HUNTING FOOD",
                 "",
-                "     CLOTHING - THIS IS ESPECIALLY IMPORTANT FOR THE COLD",
-                "            WEATHER YOU WILL ENCOUNTER WHEN CROSSING",
-                "            THE MOUNTAINS",
+                "CLOTHING - THIS IS ESPECIALLY IMPORTANT FOR THE COLD WEATHER YOU WILL ENCOUNTER WHEN CROSSING THE MOUNTAINS",
                 "",
-                "     MISCELLANEOUS SUPPLIES - THIS INCLUDES MEDICINE AND",
-                "            OTHER THINGS YOU WILL NEED FOR SICKNESS",
-                "            AND EMERGENCY REPAIRS",
+                "MISCELLANEOUS SUPPLIES - THIS INCLUDES MEDICINE AND OTHER THINGS YOU WILL NEED FOR SICKNESS AND EMERGENCY REPAIRS",
                 "",
-                "YOU CAN SPEND ALL YOUR MONEY BEFORE YOU START YOUR TRIP -",
-                "OR YOU CAN SAVE SOME OF YOUR CASH TO SPEND AT FORTS ALONG",
-                "THE WAY WHEN YOU RUN LOW. HOWEVER, ITEMS COST MORE AT",
-                "THE FORTS. YOU CAN ALSO GO HUNTING ALONG THE WAY TO GET",
-                "MORE FOOD.",
+                "YOU CAN SPEND ALL YOUR MONEY BEFORE YOU START YOUR TRIP - OR YOU CAN SAVE SOME OF YOUR CASH TO SPEND AT FORTS ALONG THE WAY WHEN YOU RUN LOW. HOWEVER, ITEMS COST MORE AT THE FORTS. YOU CAN ALSO GO HUNTING ALONG THE WAY TO GET MORE FOOD.",
                 "",
-                "WHENEVER YOU HAVE TO USE YOUR TRUSTY RIFLE ALONG THE WAY,",
-                "YOU WILL BE TOLD TO TYPE IN A WORD (ONE THAT SOUNDS LIKE A",
-                "GUN SHOT). THE FASTER YOU TYPE IN THAT WORD AND HIT THE",
-                "**RETURN** KEY, THE BETTER LUCK YOU'LL HAVE WITH YOUR GUN.",
+                "WHENEVER YOU HAVE TO USE YOUR TRUSTY RIFLE ALONG THE WAY, YOU WILL BE TOLD TO TYPE IN A WORD (ONE THAT SOUNDS LIKE A GUN SHOT). THE FASTER YOU TYPE IN THAT WORD AND HIT THE **RETURN** KEY, THE BETTER LUCK YOU'LL HAVE WITH YOUR GUN.",
                 "",
-                "AT EACH TURN, ALL ITEMS ARE SHOWN IN DOLLAR AMOUNTS",
-                "EXCEPT BULLETS",
+                "AT EACH TURN, ALL ITEMS ARE SHOWN IN DOLLAR AMOUNTS EXCEPT BULLETS",
                 "",
                 "WHEN ASKED TO ENTER MONEY AMOUNTS, DON'T USE A **$**.",
                 "",
@@ -182,13 +160,11 @@
         askRifleSkill() {
             this.tt.print([
                 "HOW GOOD A SHOT ARE YOU WITH YOUR RIFLE?",
-                "  (1) ACE MARKSMAN,  (2) GOOD SHOT,  (3) FAIR TO MIDDLIN'",
-                "  (4) NEED MORE PRACTICE,  (5) SHAKY KNEES",
-                "ENTER ONE OF THE ABOVE. THE BETTER YOU CLAIM YOU ARE, THE",
-                "FASTER YOU'LL HAVE TO BE WITH YOUR GUN TO BE SUCCESSFUL."
+                "  (1) ACE MARKSMAN,  (2) GOOD SHOT,  (3) FAIR TO MIDDLIN', (4) NEED MORE PRACTICE,  (5) SHAKY KNEES",
+                "ENTER ONE OF THE ABOVE. THE BETTER YOU CLAIM YOU ARE, THE FASTER YOU'LL HAVE TO BE WITH YOUR GUN TO BE SUCCESSFUL."
             ]);
             this.tt.getInput(result => {
-                this.rifleSkill = result;
+                this.rifleSkill = this.positiveIntegerize(result);
                 this.askOxenSpending();
             });
         }
@@ -196,7 +172,7 @@
         askOxenSpending() {
             this.tt.print("HOW MUCH DO YOU WANT TO SPEND ON YOUR OXEN TEAM?");
             this.tt.getInput(result => {
-                this.oxen = result;
+                this.oxen = this.positiveIntegerize(result);
                 if (this.oxen < 200) {
                     this.tt.print("NOT ENOUGH");
                     this.askOxenSpending();
@@ -212,7 +188,7 @@
         askFoodSpending() {
             this.tt.print("HOW MUCH DO YOU WANT TO SPEND ON FOOD?");
             this.tt.getInput(result => {
-                this.food = result;
+                this.food = this.positiveIntegerize(result);
                 if (this.food < 0) {
                     this.tt.print("IMPOSSIBLE");
                     this.askFoodSpending();
@@ -225,7 +201,7 @@
         askAmmoSpending() {
             this.tt.print("HOW MUCH DO YOU WANT TO SPEND ON AMMUNITION?");
             this.tt.getInput(result => {
-                this.ammo = result;
+                this.ammo = this.positiveIntegerize(result);
                 if (this.ammo < 0) {
                     this.tt.print("IMPOSSIBLE");
                     this.tt.askAmmoSpending();
@@ -238,7 +214,7 @@
         askClothingSpending() {
             this.tt.print("HOW MUCH DO YOU WANT TO SPEND ON CLOTHING?");
             this.tt.getInput(result => {
-                this.clothing = result;
+                this.clothing = this.positiveIntegerize(result);
                 if (this.clothing < 0) {
                     this.tt.print("IMPOSSIBLE");
                     this.askClothingSpending();
@@ -251,7 +227,7 @@
         askMiscSpending() {
             this.tt.print("HOW MUCH DO YOU WANT TO SPEND ON MISCELLANEOUS SUPPLIES?");
             this.tt.getInput(result => {
-                this.supplies = result;
+                this.supplies = this.positiveIntegerize(result);
                 if (this.supplies < 0) {
                     this.tt.print("IMPOSSIBLE");
                     this.askMiscSpending();
@@ -264,7 +240,7 @@
         checkSpendingTotal() {
             this.money = 700 - this.oxen - this.food - this.ammo - this.clothing - this.supplies;
             if (this.money < 0) {
-                this.tt.print("YOU OVERSPENT.YOU ONLY HAD $700 TO SPEND. BUY AGAIN.");
+                this.tt.print("YOU OVERSPENT. YOU ONLY HAD $700 TO SPEND. BUY AGAIN.");
                 this.askOxenSpending();
             } else {
                 this.tt.print("AFTER ALL YOUR PURCHASES, YOU NOW HAVE " + this.money + " DOLLARS LEFT");
@@ -302,10 +278,10 @@
         }
 
         positiveIntegerize(number) {
-            if (number < 0) {
+            if (Number(number) < 0) {
                 return 0;
             } else {
-                return Math.floor(number);
+                return Math.floor(Number(number));
             }
         }
 
@@ -343,10 +319,7 @@
                     this.doAction(action)
                 });
             } else {
-                this.tt.print([
-                    "DO YOU WANT TO (1) STOP AT THE NEXT FORT, (2) HUNT, ",
-                    "OR (3) CONTINUE?"
-                ]);
+                this.tt.print("DO YOU WANT TO (1) STOP AT THE NEXT FORT, (2) HUNT, OR (3) CONTINUE?");
                 this.tt.getInput(result => {
                     let action = Number(result);
                     this.doAction(action)
@@ -375,51 +348,41 @@
         }
 
         hunt() {
-            this.tt.print("hunt");
+            this.totalMileage -= 45;
+            this.shoot((responseTime) => {
+                if (responseTime <= 1) {
+                    this.tt.print("RIGHT BETWEEN THE EYES---YOU GOT A BIG ONE!!!! FULL BELLIES TONIGHT!");
+                    this.food += 52 + Math.randomInt(6) + 1;
+                    this.ammo -= 10 + Math.randomInt(4) + 1;
+                } else if (Math.randomInt(100) >= 13 * responseTime) {
+                    this.food += 52 + Math.randomInt(6) + 1;
+                    this.ammo -= 10 + 3 * responseTime;
+                    this.tt.print("NICE SHOT. RIGHT ON TARGET. GOOD EATIN' TONIGHT!!");
+                } else {
+                    // original code doesn't reduce ammo when you miss
+                    this.tt.print("YOU MISSED---AND YOUR DINNER GOT AWAY.....");
+                }
+                this.eat();
+            });
+        }
 
+        shoot(callback) {
             let shootWords = ["BANG", "BLAM", "POW", "WHAM"];
             let wordIndex = Math.randomInt(4);
             this.tt.print("TYPE " + shootWords[wordIndex]);
-
-
-
-            //6140  DIM S$[4]
-            //6143  shootWordSelector = INT(RND(0) * 4 + 1)
-            //6145  GOTO shootWordSelector OF 6150, 6160, 6170, 6180
-            //6150  S$ = "BANG"
-            //6155  GOTO 6200
-            //6160  S$ = "BLAM"
-            //6165  GOTO 6200
-            //6170  S$ = "POW"
-            //6175  GOTO 6200
-            //6180  S$ = "WHAM"
-            //6200  PRINT "TYPE "; S$
-            //6210  ENTER 255, responseTime, C$
-            //6240  responseTime = responseTime - (rifleSkill - 1)
-            //6250  PRINT
-            //6255  IF responseTime > 0 THEN 6260
-            //6257  responseTime = 0
-            //6260  IF C$ = S$ THEN 6280
-            //6270  responseTime = 100
-            //6280  RETURN 
-
-
-            this.totalMileage -= 45;
-            //2580  GOSUB 6140
-            let responseTime = 0;
-            //2590  IF responseTime <= 1 THEN 2660
-            this.tt.print("RIGHT BETWEEN THE EYES---YOU GOT A BIG ONE!!!!");
-            this.tt.print("FULL BELLIES TONIGHT!");
-            this.food += 52 + Math.randomInt(6) + 1;
-            //2600  IF 100 * RND(0) < 13 * responseTime  THEN 2710
-            this.tt.print("NICE SHOT.RIGHT ON TARGET.GOOD EATIN' TONIGHT!!");
-            this.ammo -= 10 - 3 * responseTime;
-            this.ammo -= 10 - Math.randomInt(4) + 1;
-
-            this.tt.print("YOU MISSED---AND YOUR DINNER GOT AWAY.....");
-
-
-            this.eat();
+            let responseStart = moment();
+            this.tt.getInput(result => {
+                let responseTime = moment().diff(responseStart, 'seconds');
+                responseTime -= this.rifleSkill + 1;
+                responseTime = this.positiveIntegerize(responseTime);
+                if (result.toUpperCase() !== shootWords[wordIndex]) {
+                    responseTime = 100;
+                }
+                if (responseTime > 255) {
+                    responseTime = 255;
+                }
+                callback(responseTime);
+            });
         }
 
         eat() {
@@ -427,8 +390,7 @@
                 this.tt.print("YOU RAN OUT OF FOOD AND STARVED TO DEATH");
                 this.epilog();
             } else {
-                this.tt.print("DO YOU WANT TO EAT (1) POORLY  (2) MODERATELY");
-                this.tt.print("OR (3) WELL");
+                this.tt.print("DO YOU WANT TO EAT (1) POORLY (2) MODERATELY OR (3) WELL");
                 this.tt.getInput(result => {
                     result = Number(result);
                     if (![1, 2, 3].includes(result)) {
@@ -479,16 +441,11 @@
         }
 
         lastTurn() {
-            this.tt.print([
-                "YOU FINALLY ARRIVED AT OREGON CITY",
-                "AFTER 2040 LONG MILES---HOORAY!!!!!",
-                "A REAL PIONEER!"
-            ]);
+            this.tt.print("YOU FINALLY ARRIVED AT OREGON CITY AFTER 2040 LONG MILES---HOORAY!!!!! A REAL PIONEER!");
         }
 
         epilog() {
-            this.tt.print("DUE TO YOUR UNFORTUNATE SITUATION, THERE ARE A FEW");
-            this.tt.print("FORMALITIES WE MUST GO THROUGH.");
+            this.tt.print("DUE TO YOUR UNFORTUNATE SITUATION, THERE ARE A FEW FORMALITIES WE MUST GO THROUGH.");
             this.tt.print("");
             this.tt.print("WOULD YOU LIKE A MINISTER?");
             this.tt.getInput(result => {
@@ -503,9 +460,7 @@
                         }
                         this.tt.print([
                             "", "",
-                            "WE THANK YOU FOR THIS INFORMATION AND WE ARE SORRY YOU",
-                            "DIDN'T MAKE IT TO THE GREAT TERRITORY OF OREGON",
-                            "BETTER LUCK NEXT TIME",
+                            "WE THANK YOU FOR THIS INFORMATION AND WE ARE SORRY YOU DIDN'T MAKE IT TO THE GREAT TERRITORY OF OREGON. BETTER LUCK NEXT TIME.",
                             "",
                             "                   SINCERELY",
                             "                   THE OREGON CITY CHAMBER OF COMMERCE",
