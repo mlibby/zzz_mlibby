@@ -336,7 +336,6 @@
         }
 
         getNextAction() {
-            this.fortOptionFlag *= -1;
             if (this.fortOptionFlag === -1) {
                 this.tt.print("DO YOU WANT TO (1) HUNT, OR (2) CONTINUE?");
                 this.tt.getInput(result => {
@@ -377,12 +376,75 @@
 
         hunt() {
             this.tt.print("hunt");
+
+            let shootWords = ["BANG", "BLAM", "POW", "WHAM"];
+            let wordIndex = Math.randomInt(4);
+            this.tt.print("TYPE " + shootWords[wordIndex]);
+
+
+
+            //6140  DIM S$[4]
+            //6143  shootWordSelector = INT(RND(0) * 4 + 1)
+            //6145  GOTO shootWordSelector OF 6150, 6160, 6170, 6180
+            //6150  S$ = "BANG"
+            //6155  GOTO 6200
+            //6160  S$ = "BLAM"
+            //6165  GOTO 6200
+            //6170  S$ = "POW"
+            //6175  GOTO 6200
+            //6180  S$ = "WHAM"
+            //6200  PRINT "TYPE "; S$
+            //6210  ENTER 255, responseTime, C$
+            //6240  responseTime = responseTime - (rifleSkill - 1)
+            //6250  PRINT
+            //6255  IF responseTime > 0 THEN 6260
+            //6257  responseTime = 0
+            //6260  IF C$ = S$ THEN 6280
+            //6270  responseTime = 100
+            //6280  RETURN 
+
+
+            this.totalMileage -= 45;
+            //2580  GOSUB 6140
+            let responseTime = 0;
+            //2590  IF responseTime <= 1 THEN 2660
+            this.tt.print("RIGHT BETWEEN THE EYES---YOU GOT A BIG ONE!!!!");
+            this.tt.print("FULL BELLIES TONIGHT!");
+            this.food += 52 + Math.randomInt(6) + 1;
+            //2600  IF 100 * RND(0) < 13 * responseTime  THEN 2710
+            this.tt.print("NICE SHOT.RIGHT ON TARGET.GOOD EATIN' TONIGHT!!");
+            this.ammo -= 10 - 3 * responseTime;
+            this.ammo -= 10 - Math.randomInt(4) + 1;
+
+            this.tt.print("YOU MISSED---AND YOUR DINNER GOT AWAY.....");
+
+
             this.eat();
         }
 
         eat() {
-            this.tt.print("eat");
-            this.updateMileage();
+            if (this.food < 13) {
+                this.tt.print("YOU RAN OUT OF FOOD AND STARVED TO DEATH");
+                this.epilog();
+            } else {
+                this.tt.print("DO YOU WANT TO EAT (1) POORLY  (2) MODERATELY");
+                this.tt.print("OR (3) WELL");
+                this.tt.getInput(result => {
+                    result = Number(result);
+                    if (![1, 2, 3].includes(result)) {
+                        this.eat();
+                    } else {
+                        let foodToEat = 8 + 5 * result;
+                        if (foodToEat > this.food) {
+                            this.tt.print("YOU CAN'T EAT THAT WELL");
+                            this.eat();
+                        } else {
+                            this.food -= foodToEat;
+                            this.updateMileage();
+                        }
+                    }
+                });
+            }
         }
 
         updateMileage() {
@@ -411,6 +473,7 @@
         }
 
         finishTurn() {
+            this.fortOptionFlag *= -1;
             this.turnNumber++;
             setTimeout(() => this.startTurn(), 1);
         }
@@ -421,6 +484,35 @@
                 "AFTER 2040 LONG MILES---HOORAY!!!!!",
                 "A REAL PIONEER!"
             ]);
+        }
+
+        epilog() {
+            this.tt.print("DUE TO YOUR UNFORTUNATE SITUATION, THERE ARE A FEW");
+            this.tt.print("FORMALITIES WE MUST GO THROUGH.");
+            this.tt.print("");
+            this.tt.print("WOULD YOU LIKE A MINISTER?");
+            this.tt.getInput(result => {
+                this.tt.print("WOULD YOU LIKE A FANCY FUNERAL?");
+                this.tt.getInput(result => {
+                    this.tt.print("WOULD YOU LIKE US TO INFORM YOUR NEXT OF KIN?");
+                    this.tt.getInput(result => {
+                        if (result.toLowerCase() === "yes") {
+                            this.tt.print("THAT WILL BE $4.50 FOR THE TELEGRAPH CHARGE.");
+                        } else {
+                            this.tt.print("BUT YOUR AUNT SADIE IN ST. LOUIS IS REALLY WORRIED ABOUT YOU.");
+                        }
+                        this.tt.print([
+                            "", "",
+                            "WE THANK YOU FOR THIS INFORMATION AND WE ARE SORRY YOU",
+                            "DIDN'T MAKE IT TO THE GREAT TERRITORY OF OREGON",
+                            "BETTER LUCK NEXT TIME",
+                            "",
+                            "                   SINCERELY",
+                            "                   THE OREGON CITY CHAMBER OF COMMERCE",
+                        ]);
+                    });
+                });
+            });
         }
     }
 
